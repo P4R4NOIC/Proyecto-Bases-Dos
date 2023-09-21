@@ -1,6 +1,4 @@
 
-
-
 .contenedor{
     position: absolute;
     top: 50%;
@@ -14,6 +12,7 @@
 
 }   
 
+
 .texto-login{
     margin-top: 35px;
     margin-bottom: 50px;
@@ -24,15 +23,22 @@
     text-align: center;
 }
 
-
 .entrada{
     margin-bottom: 5px;
 }
 
-.creaUsuario{
-  
-    display: block;
-    line-height: 30px;
-    font-size: small;
+.fecNac{
+    padding: 5px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+    margin-bottom: 10px;
+    font-family: arial;
+    font-size: medium;
 }
-
+.foto{
+    display: flex;
+    font-size: medium;
+    margin-left: 15px;
+    
+    
+}

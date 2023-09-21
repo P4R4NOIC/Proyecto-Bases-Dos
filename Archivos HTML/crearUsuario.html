@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREAR USUARIO</title>
+    <!-- BOOTSTRAP STYLES -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../Archivos CSS/estilosCreaUsuario.css">
+    <link rel="stylesheet" href="../Archivos CSS/estilosGenerales.css">
+    <!-- JS -->
+    <script type = "text/javaScript" src = "../Archivos JS/creaUsrFuncion.js"></script>
+</head>
+<body onLoad = "cambiaTexto()" class = "body">
+
+<div class = "contenedor">
+    <div class = "texto-login">
+    <form action="form-signin">
+        <h2 class="form-signin-heading">Registrate</h2>
+        <!-- INPUT USER -->
+        <input  type="email" id="inputUsuario" class="form-control entrada" placeholder="Usuario" autofocus="" required> 
+       
+        <!-- INPUT PASSWORD -->
+        <input type="password" id="inputContraseña" class="form-control entrada" placeholder="Contraseña" autofocus="" required> 
+       
+        <!-- INPUT CONFIRM PASSWORD -->
+        <input type="password" id="inputConfContraseña" class="form-control entrada" placeholder="Confirmar Contraseña" autofocus="" required> 
+       
+        <!-- INPUT FIRST NAME -->
+        <input type="primNombre" id="inputPrimNombre" class="form-control entrada" placeholder="Primer Nombre" autofocus="" required> 
+       
+        <!-- INPUT SECOND NAME -->
+        <input type="secNombre" id="inputSecNombre" class="form-control entrada" placeholder="Segundo Nombre" autofocus=""> 
+       
+        <!-- INPUT FIRST SURNAME -->
+        <input type="primApellido" id="inputPrimApellido" class="form-control entrada" placeholder="Primer Apellido" autofocus="" required> 
+       
+        <!-- INPUT SECOND SURNAME -->
+        <input type="secApellido" id="inputSegApellido" class="form-control entrada" placeholder="Segundo Apellido" autofocus=""> 
+
+        <!-- INPUT BIRTHDAY -->
+        <label for="birthday" style="font-size: medium;">Fecha de nacimiento:</label>
+        <input class = "fecNac" type="date" id="birthday" name="birthday" required>
+        
+        
+        <!-- INPUT PHOTO -->
+        <div class = "row justify-content-center">
+            <div class = "col-3">
+                <label class = "foto">Subir foto:</label>
+            </div>
+            <div class = "col-8">
+                <input class ="foto" type="file" id="myImg" name="myImage" accept="image/png, image/jpeg">
+            </div>
+        </div>
+
+
+
+
+        <!-- INPUT BACK AND SUBMIT -->
+        <div class = "row justify-content-center">
+            <div class = "col">
+                <a class="boton" type="button" role="button" href="login.html" onclick = "prueba()">Volver</a>
+            </div>
+            <div class = "col">
+                <input class="boton" type="submit" value="Registrar" role="button" >
+            </div>
+        </div>
+        
+       
+    </form>
+</div>
+</div>
+
+
+
+    
+<!-- B5 SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

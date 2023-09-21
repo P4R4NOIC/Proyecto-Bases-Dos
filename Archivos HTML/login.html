@@ -4,8 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
+    <!-- BOOTSTRAP STYLES -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../Archivos CSS/estilosLogin.css">
+    <link rel="stylesheet" href="../Archivos CSS/estilosGenerales.css">
+    <!-- JS -->
+    <script type = "text/javaScript" src = "../Archivos JS/creaUsrFuncion.js"></script>
+    <script type = "text/javaScript" src = "../Archivos JS/loginFunctions.js"></script>
 </head>
-<body>
+<body class = "body">
+
+
+    <div class = "contenedor">
+    <div class = "texto-login">
+    <form class="form-signin"> 
+        <img src="../Miscelaneo/imagen-importante.jpg" alt="" width = "200" height = "50">
+        <h2 class="form-signin-heading">Iniciar Sesión</h2>
+       
+
+               
+        <!-- INPUT EMAIL -->
+        <input type="email" id="inputEmail" class="form-control entrada" placeholder="Correo" required="" autofocus=""> 
+       
+        <!-- INPUT PASSWORD -->
+     
+        <input type="password" id="inputPassword" class="form-control entrada" placeholder="Contraseña" required="">
+
+
+        <!-- ENTER BUTTON -->
+        <a class="button boton" type="submit" onclick="validaCorreo()" role="button">Ingresar</a> 
+        <!-- HYPERLINK TO STUDENT PAGE -->
+        <a class = "creaUsuario" href="crearUsuario.html" onclick="estudianteTrue()">Crea tu usuario estudiante</a>
+        <!-- HYPERLINK TO PROFESSOR PAGE -->
+        <a class = "creaUsuario" href="crearUsuario.html" onclick="estudianteFalse()" >Crea tu usuario profesor</a>
+
+    </form>
+
+    </div>
+
+    </div>
     
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Entrada errónea</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            Por favor ingrese una entrada válida
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+
+
+<!-- B5 SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>

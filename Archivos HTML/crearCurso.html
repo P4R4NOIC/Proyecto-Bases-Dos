@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREAR-EDITAR CURSO</title>
+    <!-- BOOTSTRAP STYLES -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../Archivos CSS/estilosCreaEditaCurso.css">
+    <link rel="stylesheet" href="../Archivos CSS/estilosGenerales.css">
+    <!-- JS -->
+    
+</head>
+<body class = "body">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Profesor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
+                        <a class="nav-link active" href="#">Ajustes</a>
+                        
+                        <img src="../Miscelaneo/lupa.svg" alt="" width="30" height="30" class="d-inline-block align-text-top" style = "margin-top: 5px; margin-right: 3px;">
+                        <input class="form-control me-2" type="search" placeholder="Buscar Usuario" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </div>
+            </div>
+            <a class="nav-link disabled">PROFESOR</a>
+            <a class="btn btn-danger" type="submit" href="login.html">Cerrar Sesión</a>
+            
+        </div>
+    </nav>
+
+    <div class = "contenedor">
+        <div class = "texto-login">
+        <form action="form-signin">
+            <h2 class="form-signin-heading">Curso</h2>
+            <!-- INPUT CODIGO CURSO -->
+            <input id="codigoCurso" class="form-control entrada" placeholder="Código de curso" autofocus="" required> 
+           
+            <!-- INPUT NOMBRE CURSO -->
+            <input id="nombreCurso" class="form-control entrada" placeholder="Nombre de curso" autofocus="" required> 
+           
+            <!-- INPUT DESCRIPCION CURSO -->
+            <input id="desCurso" class="form-control entrada" placeholder="Descripción de curso" autofocus="" required> 
+           
+            <!-- INPUT FECHA INICIO -->
+            <label style="font-size: medium;">Inicio de curso:</label>
+            <input class = "fecNac" type="date" id="cursoInicio" required>
+
+            <!-- INPUT FECHA INICIO -->
+            <label style="font-size: medium;">Fin de curso:</label>
+            <input class = "fecNac" type="date" id="cursoFin" required>
+            
+            <!-- INPUT SWITCH -->
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <label>Curso Público</label>
+
+            <!-- INPUT PHOTO -->
+            <div class = "row justify-content-center">
+                <div class = "col-3">
+                    <label class = "foto">Foto curso:</label>
+                </div>
+                <div class = "col-8">
+                    <input class ="foto" type="file" id="myImg" name="myImage" accept="image/png, image/jpeg">
+                </div>
+            </div>
+    
+    
+    
+    
+            <!-- INPUT BACK AND SUBMIT -->
+            <div class = "row justify-content-center">
+                <div class = "col">
+                    <a class="boton" type="button" role="button" href="lobbyProfesor.html" onclick = "prueba()">Volver</a>
+                </div>
+                <div class = "col">
+                    <input class="boton" type="submit" value="Registrar" role="button" >
+                </div>
+            </div>
+            
+           
+        </form>
+    </div>
+    </div>
+
+
+    
+<!-- B5 SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

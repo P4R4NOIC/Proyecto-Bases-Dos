@@ -1,0 +1,21 @@
+
+
+.cursos{
+    margin-top: 10px;
+    margin-left: 20px;
+   
+    width: 98%;
+    height: 250px;
+    color: white;
+
+}
+
+.cursosH:hover{
+    color:grey;
+}
+
+.botonProfe{
+    height: 300%;
+    font-size: xx-large; 
+    background-color: rgb(155, 33, 217);
+}
