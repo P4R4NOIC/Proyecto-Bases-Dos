@@ -1,0 +1,46 @@
+.menu{
+    background-image: linear-gradient(92.88deg, #ccced5 9.16%, #c9c7d2 43.89%, rgb(194, 188, 210) 64.72%);
+}
+
+.texto{
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.foto{
+    color: white;
+}
+
+.titulo{
+    color: white;
+    font-size: 150%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.cajas{
+    width: 950px;
+    margin-left: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.Secciones{
+    border: 3px solid gray;
+    background-color: #00342c;
+    
+   
+}
+
+.Temas{
+    border: 3px solid gray;
+    background-color: #260d33;
+}
+
+.SubTemas{
+    border: 3px solid gray;
+    background-color: #3b1415;
+}

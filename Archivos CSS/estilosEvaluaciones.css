@@ -1,0 +1,68 @@
+.notas{
+    width: 950px;
+    margin-left: 25%;
+    
+}
+.eval{
+    background-image: linear-gradient(92.88deg, #ccced5 9.16%, #c9c7d2 43.89%, rgb(194, 188, 210) 64.72%);
+}
+
+.cajaTituloEvaluaciones{
+    color: white;
+    background-color: brown;
+    border: 3px black;
+    border-radius: 5px;
+    margin-top: 15px;
+    
+}
+
+.tituloEvaluaciones{
+    font-size: 150%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.labels{
+    font-size: 30px; 
+    color: white; 
+    font-family: arial;
+}
+
+.menosLabel{
+    font-size: 20px;
+}
+
+.creaEval{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.entrada{
+    background-image: linear-gradient(92.88deg, #ccced5 9.16%, #c9c7d2 43.89%, rgb(194, 188, 210) 64.72%);
+    margin-bottom: 5px;
+   
+}
+
+.menu{
+    width: 850px;
+    margin-right: -80px;
+}
+
+.fecNac{
+    margin-left: 20px;
+    padding: 5px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+    margin-bottom: 10px;
+    font-family: arial;
+    font-size: medium;
+    background-image: linear-gradient(92.88deg, #ccced5 9.16%, #c9c7d2 43.89%, rgb(194, 188, 210) 64.72%);
+}
+
+.preguntas{
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+}

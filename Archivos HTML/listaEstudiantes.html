@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOBBY ESTUDIANTE</title>
+    <title>Lista de estudiantes</title>
     <!-- BOOTSTRAP STYLES -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
     <!-- CSS -->
-    <link rel="stylesheet" href="../Archivos CSS/estilosProfe.css">
     <link rel="stylesheet" href="../Archivos CSS/estilosGenerales.css">
-    <!-- JS -->
-    
+    <link rel="stylesheet" href="../Archivos CSS/estilosCurso.css">
 </head>
 <body class = "body">
-
+     
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-        <a class="navbar-brand" href="lobbyEstudiante.html">Estudiante</a>
+        <a class="navbar-brand" href="lobbyProfesor.html">Profesor</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="lobbyEstudiante.html">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="lobbyProfesor.html">Inicio</a>
                         <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
                         <a class="nav-link active" href="#">Ajustes</a>
                         
@@ -32,46 +31,55 @@
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </div>
             </div>
-            <a class="nav-link disabled">ESTUDIANTE</a>
+            <a class="nav-link disabled">PROFESOR</a>
             <a class="btn btn-danger" type="submit" href="login.html">Cerrar Sesión</a>
             
         </div>
     </nav>
 
+    <div class="container-fluid !direction !spacing">
+        <div class="row">
+            <div class="col">
+                <!-- TABLA -->
+                <table class="table table-dark table-striped cursos cajas">
+                    <!-- CABECERA -->
+                    <thead>
+                        <tr>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo</th>
+                        </tr>
+                    </thead>
+                    <!-- CUERPO -->
+                    <tbody>
+                        <tr>
+                            <td> Vindas Hernández </td>
+                            <td> Roberto Daniel </td>
+                            <td> rvindas2001@estudiantec.cr </td>
+                        </tr>
+                        <tr>
+                            <td> Vindas Hernández </td>
+                            <td> Roberto Daniel </td>
+                            <td> rvindas2001@estudiantec.cr </td>
+                        </tr>
+                        <tr>
+                            <td> Vindas Hernández </td>
+                            <td> Roberto Daniel </td>
+                            <td> rvindas2001@estudiantec.cr </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <a class="boton botonProfe" style = "margin-left:475px; width: 51.3%; "type="button" role="button" href="curso.html" ">Volver</a>
+            </div>
 
-    <table class="table table-dark table-striped cursos">
-        <thead>
-            <tr>
-            <th scope="col">Mis Cursos</th>
-            <th scope="col">Estado</th>
-        
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"> <a href="curso.html" class = "cursosH cursos">Curso 1</a> </th>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 2</a></th>
-                <td>No</td>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 3</a></th>
-                <td colspan="2">Si</td>
-            </tr>
-        </tbody>
-    </table>
-  
-
-    <div class = "row justify-content-center">
-        <div class = "col">
-            <a class="boton botonProfe" type="button" role="button" href="matricula.html" onclick = "prueba()">Matricularse</a>
+            
         </div>
+    
+        
     </div>
-  
-
-
+    
 
 </body>
 </html>

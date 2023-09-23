@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
     <!-- CSS -->
-    <link rel="stylesheet" href="../Archivos CSS/estilosProfe.css">
     <link rel="stylesheet" href="../Archivos CSS/estilosGenerales.css">
+    <link rel="stylesheet" href="../Archivos CSS/estilosMatricula.css">
     <!-- JS -->
     
 </head>
@@ -38,40 +38,47 @@
         </div>
     </nav>
 
-
     <table class="table table-dark table-striped cursos">
         <thead>
             <tr>
-            <th scope="col">Mis Cursos</th>
-            <th scope="col">Estado</th>
-        
+                <th scope="col">Cursos Disponibles</th>
+                <th scope="col">Profesor</th>
+                <th scope="col">Código</th>
+                <th scope="col">Descripción de curso</th>
+                <th scope="col">Matricula</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th scope="row"> <a href="curso.html" class = "cursosH cursos">Curso 1</a> </th>
-                <td>Si</td>
+                <th scope="row"> <a href="#" class = "cursosH cursos">Curso 1</a> </th>
+                <td>Profe 1</td>
+                <td>UHC-500</td>
+                <td>Curso bonito</td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </td>
             </tr>
             <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 2</a></th>
-                <td>No</td>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 3</a></th>
-                <td colspan="2">Si</td>
+                <th scope="row"><a href="#" class = "cursosH cursos">Curso 4</a></th>
+                <td>Profe 1</td>
+                <td>IMG-800</td>
+                <td>Curso feito</td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </td>
             </tr>
         </tbody>
     </table>
-  
-
-    <div class = "row justify-content-center">
-        <div class = "col">
-            <a class="boton botonProfe" type="button" role="button" href="matricula.html" onclick = "prueba()">Matricularse</a>
-        </div>
-    </div>
-  
 
 
+
+    
 
 </body>
 </html>
