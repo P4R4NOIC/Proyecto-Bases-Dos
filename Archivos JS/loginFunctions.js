@@ -11,14 +11,15 @@ function validaCorreo() {
         // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
 
         // ------------------------------------------------------------------------------- //
-        location.href = "lobbyEstudiante.html"
+        location.href = "../../Archivos HTML/Archivos Estudiante/lobbyEstudiante.html"
+        
       
     } 
     else if(email.match(correoProfesorValido) != null && contrasena != ""){
         // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
 
         // ------------------------------------------------------------------------------- //
-        location.href = "lobbyProfesor.html"
+        location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
     }
     
     else {

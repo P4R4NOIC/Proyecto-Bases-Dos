@@ -1,0 +1,26 @@
+
+.mensajes{
+  
+    background-image: linear-gradient(92.88deg, #ccced5 9.16%, #c9c7d2 43.89%, rgb(194, 188, 210) 64.72%);
+    min-height: 500px;
+    height: auto; 
+    margin-bottom: 30px; 
+    word-wrap: break-word;
+}
+
+.rec .list-group-item {
+    background-color: rgb(62, 59, 59);
+    color: white;
+    border-top: 1px solid #1f0346;
+    border-left-color: #1f0346;
+    border-right-color: #1f0346;
+}
+  
+.rec .list-group-item:hover {
+    background-color: salmon;
+}
+
+.recibidos{
+    margin-top:15px;
+
+}

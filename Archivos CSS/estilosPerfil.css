@@ -1,0 +1,31 @@
+.perfil{
+    width: 200px;
+    height: 200px;
+    margin-left: 30%;
+}
+
+.arriba{
+    margin-top: 20px;
+}
+
+.listaCursos{
+    margin-left: 10px;
+    width: 500px;
+    color:white;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+.textos{
+    color:white;
+    margin-left:-120px;
+}
+
+.listaProfe{
+    margin-left: 60%;
+}
+
+.botones{
+    margin-left: -330px;
+}

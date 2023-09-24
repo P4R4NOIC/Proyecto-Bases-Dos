@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso X</title>
+    <title>CURSO</title>
     <!-- BOOTSTRAP STYLES -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
     <!-- CSS -->
-    <link rel="stylesheet" href="../Archivos CSS/estilosGenerales.css">
-    <link rel="stylesheet" href="../Archivos CSS/estilosCurso.css">
+    <link rel="stylesheet" href="../../Archivos CSS/estilosGenerales.css">
+    <link rel="stylesheet" href="../../Archivos CSS/estilosCurso.css">
 </head>
 <body class = "body">
 
@@ -23,16 +23,14 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="lobbyProfesor.html">Inicio</a>
-                        <a class="nav-link active" aria-current="page" href="#">Mensajes</a>
-                        <a class="nav-link active" href="#">Ajustes</a>
+                        <a class="nav-link active" aria-current="page" href="mensajesVistaProfe.html">Mensajes</a>
+                        <a class="nav-link active" href="../Archivos Compartidos/crearUsuario.html">Ajustes</a>
+                        <a class="nav-link active" href="buscarPersonaProfe.html">Buscar Persona</a>
                         
-                        <img src="../Miscelaneo/lupa.svg" alt="" width="30" height="30" class="d-inline-block align-text-top" style = "margin-top: 5px; margin-right: 3px;">
-                        <input class="form-control me-2" type="search" placeholder="Buscar Usuario" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </div>
             </div>
-            <a class="nav-link disabled">PROFESOR</a>
-            <a class="btn btn-danger" type="submit" href="login.html">Cerrar Sesión</a>
+            <a id="nombreProfesor" class="nav-link disabled">PROFESOR</a>
+            <a class="btn btn-danger" type="submit" href="../Archivos Compartidos/login.html">Cerrar Sesión</a>
             
         </div>
     </nav>
@@ -44,7 +42,7 @@
                 <label class="titulo">BASES DE DATOS II</label>
             </div>
             <div class="col-4">
-                <a class="boton botonProfe" type="button" role="button" href="#">Editar propiedades de curso</a>
+                <a class="boton botonProfe" type="button" role="button" href="editarCurso.html">Editar propiedades de curso</a>
             </div>
             <div class="col-3">
                 <a class="boton botonProfe" type="button" role="button" href="evaluaciones.html">Evaluaciones</a>
