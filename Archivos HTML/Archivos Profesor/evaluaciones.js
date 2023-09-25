@@ -1,3 +1,4 @@
+
 var contenedorPreguntas = document.getElementById("preguntas");
 var presionado = new Boolean(false)
 

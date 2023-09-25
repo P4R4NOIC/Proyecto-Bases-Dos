@@ -1,12 +1,5 @@
 
-function estudianteTrue(){
-    localStorage.setItem("estudiante", "v");
-}
-
-function estudianteFalse(){
-    localStorage.setItem("estudiante", "f");
-}
-
+//FUNCION EN CREAR USUARIO
 function cambiaTexto(){
 
     if(localStorage.getItem("estudiante")  == "v"){

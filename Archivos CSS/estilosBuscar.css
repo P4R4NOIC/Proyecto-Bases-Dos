@@ -1,0 +1,18 @@
+.caja{
+    margin: auto; 
+    width: 50%; 
+    border: 3px solid #915d4b;
+    border-radius: 5px;
+    background-color: #6b4437; 
+    margin-top: 10px;
+    padding: 10px;
+}
+
+#searchbar {
+    margin-bottom: 10px;
+}
+
+.listas{
+    width: 75%;
+    margin: auto;
+}
