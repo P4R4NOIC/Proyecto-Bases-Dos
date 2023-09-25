@@ -39,6 +39,8 @@
     display: flex;
     font-size: medium;
     margin-left: 15px;
-    
-    
+}
+
+.textoSimple{
+    font-size: medium;
 }

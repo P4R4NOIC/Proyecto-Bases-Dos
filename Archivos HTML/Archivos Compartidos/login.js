@@ -16,21 +16,25 @@ function validaCorreo() {
     var correoProfesorValido = /^[a-zA-Z0-9_-]+(@itcr.ac.cr)$/;
     var contrasena = document.getElementById("inputPassword").value
     
- 
-    if (email.match(correoEstudianteValido) != null && contrasena != "")
+    
+    if (correoEstudianteValido.test(email) && contrasena != "")
     {
         // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
 
         // ------------------------------------------------------------------------------- //
-        
+        localStorage.setItem("conexion", "ESTUD")
+        localStorage.setItem("usuario", email)
+
         location.href = "../../Archivos HTML/Archivos Estudiante/lobbyEstudiante.html"
       
     } 
-    else if(email.match(correoProfesorValido) != null && contrasena != ""){
+    else if(correoProfesorValido.test(email) && contrasena != ""){
         // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
 
         // ------------------------------------------------------------------------------- //
+        localStorage.setItem("conexion", "PROFE")
         localStorage.setItem("usuario", email)
+    
         location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
     }
     

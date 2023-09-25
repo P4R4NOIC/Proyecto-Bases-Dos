@@ -1,16 +1,13 @@
-
 var cursos = [{"curso":"Bases de datos","estado":"Disponible"},
               {"curso":"Bases de datos 2", "estado":"Finalizado"}, 
               {"curso":"Lenguajes de programacion", "estado":"En curso"}]
-
-
 
 
 function cargarPagina(){
     
     autenticar()
     
-    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
 
 
 
@@ -21,13 +18,12 @@ function cargarPagina(){
         
 
         creaListas(cursos[i][idCurso], cursos[i][idEstado], i);
-
-        
         
     }
 
     document.addEventListener("DOMContentLoaded", cargarPagina);
 }
+
 
 function creaListas(contenido,estado,cantidad){
 
@@ -57,5 +53,5 @@ function creaListas(contenido,estado,cantidad){
 
 function guardaCursoActual(cursoActual){
     localStorage.setItem("cursoActual", cursoActual);
-    location.href = "curso.html";
+    location.href = "cursoEstudiante.html";
 }

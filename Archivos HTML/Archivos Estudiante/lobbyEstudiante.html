@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOBBY ESTUDIANTE</title>
+    <link rel="icon" type="image/x-icon" href="../../Miscelaneo/favicon.ico">
     <!-- BOOTSTRAP STYLES -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
@@ -11,9 +12,11 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosProfe.css">
     <link rel="stylesheet" href="../../Archivos CSS/estilosGenerales.css">
     <!-- JS -->
+    <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "lobbyEstudiante.js"></script>
     
 </head>
-<body class = "body">
+<body onload="cargarPagina()" class = "body">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -29,8 +32,8 @@
                         <a class="nav-link active" href="buscarPersonaEstud.html">Buscar Persona</a>
                 </div>
             </div>
-            <a class="nav-link disabled">ESTUDIANTE</a>
-            <a class="btn btn-danger" type="submit" href="../Archivos Compartidos/login.html">Cerrar Sesión</a>
+            <a id="nombreEstudiante" class="nav-link disabled">ESTUDIANTE</a>
+            <a class="btn btn-danger" type="submit" onclick="cierreSesion()">Cerrar Sesión</a>
             
         </div>
     </nav>
@@ -38,27 +41,27 @@
 
     <table class="table table-dark table-striped cursos">
         <thead>
-            <tr>
+          <tr>
             <th scope="col">Mis Cursos</th>
             <th scope="col">Estado</th>
         
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row"> <a href="cursoEstudiante.html" class = "cursosH cursos">Curso 1</a> </th>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 2</a></th>
-                <td>No</td>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 3</a></th>
-                <td colspan="2">Si</td>
-            </tr>
+          <tr>
+            <th scope="row"> <a class = "cursosH cursos" id = "curso1" onclick="guardaCursoActual(this.innerHTML)">Curso 1</a> </th>
+            <td id = "estado1">Si</td>
+          </tr>
+          <tr>
+            <th scope="row"><a class = "cursosH cursos" id = "curso2" onclick="guardaCursoActual(this.innerHTML)">Curso 2</a></th>
+            <td id = "estado2">No</td>
+          </tr>
+          <tr>
+            <th scope="row"><a class = "cursosH cursos" id= "curso3" onclick="guardaCursoActual(this.innerHTML)">Curso 3</a></th>
+            <td id = "estado3">Si</td>
+          </tr>
         </tbody>
-    </table>
+      </table>
   
 
     <div class = "row justify-content-center">

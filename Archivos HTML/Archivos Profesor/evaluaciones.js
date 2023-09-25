@@ -12,8 +12,8 @@ function generarPreguntas(value){
         for(i; i> 0; i--){
             var elem = document.querySelector(".preguntas");
             var clone = elem.cloneNode(true);
-            clone.id = "preguntas";
-            document.getElementById('lab').innerHTML = 'Pregunta ' + i
+            clone.id = "preguntas" + i;
+            document.getElementById('lab').innerHTML = 'Pregunta ' + i;
             elem.after(clone);  
         }
     }
