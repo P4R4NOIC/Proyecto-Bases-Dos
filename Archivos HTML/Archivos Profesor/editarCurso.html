@@ -13,9 +13,10 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosGenerales.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "editarCurso.js"></script>
     
 </head>
-<body class = "body">
+<body onload="cargarPagina()" class = "body">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -40,16 +41,19 @@
 
     <div class = "contenedor">
         <div class = "texto-login">
-        <form action="form-signin">
+        <form id="formulario">
             <h2 class="form-signin-heading">Editar Curso</h2>
             <!-- INPUT CODIGO CURSO -->
-            <input id="codigoCurso" class="form-control entrada" placeholder="Código de curso" autofocus="" readonly> 
+            <label for="codigoCurso" class="textoSimple">Código de curso</label>
+            <input id="codigoCurso" type="text" class="form-control entrada" placeholder="Código de curso" readonly> 
            
             <!-- INPUT NOMBRE CURSO -->
-            <input id="nombreCurso" class="form-control entrada" placeholder="Nombre de curso" autofocus="" required> 
+            <label for="nombreCurso" class="textoSimple">Nombre de curso</label>
+            <input id="nombreCurso" type="text" class="form-control entrada" placeholder="Nombre de curso" required> 
            
             <!-- INPUT DESCRIPCION CURSO -->
-            <input id="desCurso" class="form-control entrada" placeholder="Descripción de curso" autofocus="" required> 
+            <label for="desCurso" class="textoSimple">Descripción</label>
+            <input id="desCurso" type="text" class="form-control entrada" placeholder="Descripción de curso" required> 
            
             <!-- INPUT FECHA INICIO -->
             <label style="font-size: medium;">Inicio de curso:</label>
@@ -60,19 +64,19 @@
             <input class = "fecNac" type="date" id="cursoFin" required>
             
             <!-- INPUT SWITCH -->
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
-            <label>Curso Público</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="estadoCurso" style="margin-left: 25%">
+                <label class="form-check-label" for="estadoCurso" style="margin-right: 25%">Curso Público</label>
+            </div>
+            
 
             <!-- INPUT PHOTO -->
             <div class = "row justify-content-center">
                 <div class = "col-3">
-                    <label class = "foto">Foto curso:</label>
+                    <label for="myImg" class = "foto">Foto curso:</label>
                 </div>
                 <div class = "col-8">
-                    <input class ="foto" type="file" id="myImg" name="myImage" accept="image/png, image/jpeg">
+                    <input class ="foto" type="file" id="myImg" accept="image/png, image/jpeg">
                 </div>
             </div>
     

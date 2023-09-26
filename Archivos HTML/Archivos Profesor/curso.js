@@ -1,28 +1,33 @@
 var seccionesCargadas = new Boolean(true);
+var seccionSeleccionada;
+var temaSeleccionado;
 var lista1Cargada = new Boolean(true);
 var lista2Cargada = new Boolean(true);
+var lista3Cargada = new Boolean(true);
+var lista4Cargada = new Boolean(true);
 var entrada = [{"seccion":"Referencias", "contenido":["iguana.txt", "lagarto.pdf", "lagartijo.pptx"], 
                 
-                "temas":[ {"tema":"Referencias++", "contenido":[], 
+                "temas":[ {"tema":"Referencias++", "contenido":["sube.rar", "baja.cpp", "derecha.cpp", "izquierda.cpp", "cero.cpp"], 
                             
-                            "subtemas":[{"subtema":"Referencias Reloaded", "contenido":[]},
+                            "subtemas":[{"subtema":"Referencias Reloaded", "contenido":["ya.c", "no.hs"]},
                                         
                                         {"subtema":"Notas Reloaded", "contenido":[]}]}, 
                 
-                          {"tema":"Notas++", "contenido":[],
+                          {"tema":"Notas++", "contenido":["algo", "algoMas"],
                             
                             "subtemas":[]}]}, 
 
-               {"seccion":"Notas", "contenido":[], "temas":[]}, 
+               {"seccion":"Notas", "contenido":["contenido", "enNotas"], "temas":[{"tema":"temaNotas"}]}, 
 
 
-               {"seccion":"Otro", "contenido":[], "temas":[]}]
+               {"seccion":"Otro", "contenido":["otro","fin"], "temas":[]}]
 
 
 
 function cargarPagina(){
     //FUNCION DE AUTENTICACION DE USUARIO
     autenticar()
+    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
     cargarFunciones()
     //CARGA LA PAGINA CUANDO TODO ESTA LISTO
     document.addEventListener("DOMContentLoaded", cargarPagina);
@@ -31,18 +36,28 @@ function cargarPagina(){
 function cargarFunciones(){
 
     document.getElementById("tituloCurso").textContent = localStorage.getItem("cursoActual");
+   
     document.getElementById("tituloTabla").textContent = "Secciones";
     cargarSecciones();
 }
 
+
+
 //CARGA SECCIONES AL INICIAR
 function cargarSecciones(){
-    if(lista2Cargada == false){
-        for(var i = 0; i < entrada.length; i++){
-            document.getElementById("filas").remove();
-        }
-        lista2Cargada = true;
+    
+    //borra la tabla con la cantidad de listas
+    
+   
+    var table = document.getElementById("cuerpoTabla");
+    var rowCount = table.rows.length;
+
+
+    for(var i = 0; i < rowCount; i++){
+           document.getElementById("filas").remove();
     }
+    
+
 
  if(lista1Cargada == true){
    for(var i = 0; i < entrada.length; i++){
@@ -72,6 +87,7 @@ function cargarSecciones(){
     for(var i = 0; i<entrada.length; i++){
         var seccion = entrada[i]["seccion"];
         creaListas(seccion, i);
+        lista2Cargada = false;
     }
     
  }
@@ -80,46 +96,154 @@ function cargarSecciones(){
 
 function cargarTemas(tema){
     document.getElementById("tituloTabla").textContent = "Secciones/Tema";
-    
-    for(var i = 0; i < entrada.length; i++){
-        document.getElementById("filas").remove();
-    }
+    seccionSeleccionada = tema;
+    var table = document.getElementById("cuerpoTabla");
+    var rowCount = table.rows.length;
 
+
+    for(var i = 0; i < rowCount; i++){
+           document.getElementById("filas").remove();
+    }
+   
     var contenido = entrada[tema]["contenido"].length;
     var temas = entrada[tema]["temas"].length;
+   
+
+
+
    if(lista2Cargada == true){
-    if(contenido > 0){
+    temaAnterior = tema;
+   var temaAnterior = tema;
+     if(contenido > 0){
         for(var i = 0; i < contenido; i++){
             creaListas(entrada[tema]["contenido"][i], i);
         }
         
-    }
-    if(temas > 0){
+     }
+     if(temas > 0){
 
         for(var i = 0; i < temas; i++){
 
-            var tema = entrada[tema]["temas"][i]["tema"];
+           
+           
+     
             var ele = document.createElement("a");
             ele.classList = "dropdown-item";
-            ele.innerHTML = tema;
+            ele.innerHTML = entrada[tema]["temas"][i]["tema"];
             ele.id = "tema" + (i+1);
-    
+            
             ele.onclick = function (){
-                actualizarTema(this.innerHTML)
-            }; 
-
+                actualizarTema(this.innerHTML, tema)
+             };
+        
             document.querySelector(".menu2").appendChild(ele);
-
+            
             creaListas(entrada[tema]["temas"][i]["tema"], i);
+
+            
         }
     }
 
-    lista2Cargada = false;
+     lista2Cargada = false;
+ }
+ else{
+    for(var i = 0; i<temas; i++){
+       
+    creaListas(entrada[tema]["temas"][i]["tema"], i);
+    }
+    for(var i = 0; i < contenido; i++){
+        creaListas(entrada[tema]["contenido"][i], i);
+    }
  }
 
     seccionesCargadas = false;
 }
 
+
+function cargaSubtemas(seccion, tema){
+    document.getElementById("tituloTabla").textContent = "Secciones/Tema/Sub-tema";
+    temaSeleccionado = tema;
+
+   
+    var table = document.getElementById("cuerpoTabla");
+    var rowCount = table.rows.length;
+
+    for(var i = 0; i < rowCount; i++){
+        document.getElementById("filas").remove();
+    }
+    
+   
+    var contenido = entrada[seccion]["temas"][tema]["contenido"].length;
+    var subtemas = entrada[seccion]["temas"][tema]["subtemas"].length;
+   
+
+    if(lista3Cargada == true){
+
+        if(contenido > 0){
+            for(var i = 0; i < contenido; i++){
+                creaListas(entrada[seccion]["temas"][tema]["contenido"][i],i);
+            }
+        }
+
+        if(subtemas > 0){
+            for(var i = 0; i < subtemas; i++){
+                var ele = document.createElement("a");
+                ele.classList = "dropdown-item";
+                ele.innerHTML = entrada[seccion]["temas"][tema]["subtemas"][i]["subtema"];
+                ele.id = "subtema" + (i+1);
+                
+                ele.onclick = function (){
+                    actualizarSubTema(this.innerHTML, tema, seccion)
+                 };
+            
+                document.querySelector(".menu3").appendChild(ele);
+                
+                creaListas(entrada[seccion]["temas"][tema]["subtemas"][i]["subtema"], i);
+            }
+        }
+
+        lista3Cargada = false;
+    }
+    else{
+        for(var i = 0; i < subtemas; i++){
+            creaListas(entrada[seccion]["temas"][tema]["subtemas"][i]["subtema"], i);
+        }
+        for(var i = 0; i < contenido; i++){
+            creaListas(entrada[seccion]["temas"][tema]["contenido"][i],i);
+        }
+    }
+
+
+}
+
+function cargaFinal(seccion, tema, subtema){
+    document.getElementById("tituloTabla").textContent = "Secciones/Tema/Sub-tema/Fin";
+    
+    var table = document.getElementById("cuerpoTabla");
+    var rowCount = table.rows.length;
+
+    for(var i = 0; i < rowCount; i++){
+        document.getElementById("filas").remove();
+    }
+    
+   
+    var contenido = entrada[seccion]["temas"][tema]["subtemas"][subtema]["contenido"].length;
+    if(lista4Cargada == true){
+        if(contenido > 0){
+            for(var i = 0; i < contenido; i++){
+                creaListas(entrada[seccion]["temas"][tema]["subtemas"][subtema]["contenido"][i],i);
+            }
+        }
+        lista4Cargada = false;
+    }
+    else{
+        if(contenido > 0){
+            for(var i = 0; i < contenido; i++){
+                creaListas(entrada[seccion]["temas"][tema]["subtemas"][subtema]["contenido"][i],i);
+            }
+        }
+    }
+}
 
 function creaListas(contenido, cantidad){
 
@@ -138,9 +262,92 @@ function creaListas(contenido, cantidad){
 
 }
 
+function botonSubirArchivoSeccion(){
+
+}
+function botonSubirArchivoTema(){
+
+}
+
+function botonSubirArchivoSubTema(){
+
+}
+
+function botonAgregarSeccion(){
+    var seccion = document.getElementById("agregarTemaSeccion").value
+    var seccionNueva = {"seccion":seccion, "contenido":[], "temas":[]}
+    entrada.push(seccionNueva); 
+   
+   
+    var seccion = entrada[entrada.length-1]["seccion"];
+    var ele = document.createElement("a");
+    ele.classList = "dropdown-item";
+    ele.innerHTML = seccion;
+    ele.id = "seccion" + (entrada.length);
+    
+    ele.onclick = function (){
+        actualizarSeccion(this.innerHTML)
+     };
+
+    document.querySelector(".menu1").appendChild(ele);
+
+    
+    creaListas(seccion, entrada.length);
+    
+}
+
+function botonAgregaTema(){
+
+    var tema = document.getElementById("agregarSubTema").value
+    var temaNuevo = {"tema":tema, "contenido":[], "subtemas":[]}
+
+    entrada[seccionSeleccionada]["temas"].push(temaNuevo);
+    var largo = entrada[seccionSeleccionada]["temas"].length
+    var seccion = entrada[seccionSeleccionada]["temas"][largo-1];
+
+    var ele = document.createElement("a");
+    ele.classList = "dropdown-item";
+    ele.innerHTML = entrada[seccionSeleccionada]["temas"][largo-1]["tema"];
+    ele.id = "tema" + (largo);
+    
+    ele.onclick = function (){
+        actualizarTema(this.innerHTML,seccionSeleccionada)
+     };
+
+    document.querySelector(".menu2").appendChild(ele);
+
+    
+    creaListas(entrada[seccionSeleccionada]["temas"][largo-1]["tema"], largo-1);
 
 
+   
+   
+   
+   
+}
 
+function botonAgregaSubTema(){
+    var subTema = document.getElementById("agregarSubTemaTitulo").value;
+    var subTemaNuevo = {"subtema":subTema, "contenido":[]}
+
+    entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"].push(subTemaNuevo);
+  
+    var largo = entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"].length
+
+    var ele = document.createElement("a");
+    ele.classList = "dropdown-item";
+    ele.innerHTML = entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][largo-1]["subtema"];
+    ele.id = "subtema" + largo;
+                
+    ele.onclick = function (){
+            actualizarSubTema(this.innerHTML, temaSeleccionado, seccionSeleccionada)
+        };
+            
+    document.querySelector(".menu3").appendChild(ele);
+                
+    creaListas(entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][largo-1]["subtema"], largo-1);
+            
+}
 
 //CLICK EN BOTON CARGAR SECCIONES
 function botonCargarSecciones(){
@@ -150,7 +357,8 @@ function botonCargarSecciones(){
     activaDesactivaTemas(true);
     //DESACTIVA SUBTEMA
     activaDesactivaSubTemas(true);
-
+    lista2Cargada = true;
+    lista3Cargada = true;
 }
 
 //CLICK EN SELECCIONAR SECCION
@@ -172,21 +380,37 @@ function actualizarSeccion(item){
 
 
 //CLICK EN SELECCIONAR TEMA
-function actualizarTema(item) {
+function actualizarTema(item, tema) {
     document.getElementById("dropdownMenuButton2").innerHTML = item;
 
     //ACTUALIZA LISTA CON TEMA
+    var i = 0;
    
+    for(i; i < entrada[tema]["temas"].length; i++){
+        if(item == entrada[tema]["temas"][i]["tema"]){
+            break;
+        }
+    }
+    
+    cargaSubtemas(tema, i);
     //---------------------------
     activaDesactivaSubTemas(false);
 }
 
 //CLICK EN SELECCIONAR SUBTEMA
-function actualizarSubTema(item){
-    document.getElementById("dropdownMenuButton3").innerHTML = item.innerHTML;
+function actualizarSubTema(item, tema, seccion){
+    document.getElementById("dropdownMenuButton3").innerHTML = item;
 
     //ACTUALIZA LISTA CON SUBTEMA
+    var i = 0;
+   
+    for(i; i < entrada[seccion]["temas"][tema]["subtemas"].length; i++){
+        if(item == entrada[seccion]["temas"][tema]["subtemas"][i]["subtema"]){
+            break;
+        }
+    }
 
+    cargaFinal(seccion, tema, i);
     //---------------------------
 }
 
@@ -225,4 +449,7 @@ function activaDesactivaSubTemas(estado){
     document.getElementById("agregarArchivoSubTema").disabled = estado;
     document.getElementById("archivoSubTema").disabled = estado;
     document.getElementById("archivoSubTema").value = '';
+    document.getElementById("botonAgregarSubTema").disabled = estado;
+    document.getElementById("agregarSubTemaTitulo").disabled = estado;
+    document.getElementById("agregarSubTemaTitulo").value = '';
 }

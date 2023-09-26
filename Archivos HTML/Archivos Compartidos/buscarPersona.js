@@ -31,6 +31,7 @@ function cargarPagina(){
     
     autenticar()
     document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    
     cargarPersonas()
 
     document.addEventListener("DOMContentLoaded", cargarPagina);
@@ -46,7 +47,7 @@ function cargarPersonas(){
         ele.innerHTML = persona;
         ele.onclick = function (){
             location.href = "../Archivos Profesor/perfilUsuarioVistaProfe.html";
-            
+
         };
         document.querySelector(".listas").appendChild(ele);
     }

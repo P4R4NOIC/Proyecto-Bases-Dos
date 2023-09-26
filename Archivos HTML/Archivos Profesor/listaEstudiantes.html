@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosCurso.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "listaEstudiantes.js"></script>
+
     
 </head>
-<body class = "body">
+<body onload="cargarPagina()" class = "body">
      
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -53,22 +55,8 @@
                         </tr>
                     </thead>
                     <!-- CUERPO -->
-                    <tbody>
-                        <tr>
-                            <td> Vindas Hernández </td>
-                            <td> Roberto Daniel </td>
-                            <td> rvindas2001@estudiantec.cr </td>
-                        </tr>
-                        <tr>
-                            <td> Vindas Hernández </td>
-                            <td> Roberto Daniel </td>
-                            <td> rvindas2001@estudiantec.cr </td>
-                        </tr>
-                        <tr>
-                            <td> Vindas Hernández </td>
-                            <td> Roberto Daniel </td>
-                            <td> rvindas2001@estudiantec.cr </td>
-                        </tr>
+                    <tbody class="cuerpoTabla">
+                        
                     </tbody>
                 </table>
             </div>

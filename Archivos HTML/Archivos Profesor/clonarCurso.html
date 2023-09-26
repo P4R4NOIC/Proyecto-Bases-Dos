@@ -13,9 +13,10 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosGenerales.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "clonarCurso.js"></script>
     
 </head>
-<body class = "body">
+<body onload="cargarPagina()" class = "body">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -40,23 +41,24 @@
 
     <div class = "contenedor">
         <div class = "texto-login">
-        <form action="form-signin">
+        <form id="formulario">
             <h2 class="form-signin-heading">Clonar Curso</h2>
 
-            <select class="form-select entrada" aria-label="Default select example">
+            <select id="select" class="form-select entrada selectCurso" >
                 <option selected>Seleccionar curso</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                
             </select>
 
             <!-- INPUT CODIGO CURSO -->
+            <label for="codigoCurso" class="textoSimple">Código de curso</label>
             <input id="codigoCurso" class="form-control entrada" placeholder="Código de curso" autofocus="" required> 
            
             <!-- INPUT NOMBRE CURSO -->
+            <label for="nombreCurso" class="textoSimple">Nombre de curso</label>
             <input id="nombreCurso" class="form-control entrada" placeholder="Nombre de curso" autofocus="" required> 
            
             <!-- INPUT DESCRIPCION CURSO -->
+            <label for="desCurso" class="textoSimple">Descripción</label>
             <input id="desCurso" class="form-control entrada" placeholder="Descripción de curso" autofocus="" required> 
            
             <!-- INPUT FECHA INICIO -->
@@ -68,11 +70,10 @@
             <input class = "fecNac" type="date" id="cursoFin" required>
             
             <!-- INPUT SWITCH -->
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
-            <label>Curso Público</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="estadoCurso" style="margin-left: 25%">
+                <label class="form-check-label" for="estadoCurso" style="margin-right: 25%">Curso Público</label>
+            </div>
             
             <!-- INPUT PHOTO -->
             <div class = "row justify-content-center">
@@ -93,7 +94,7 @@
                     <a class="boton" type="button" role="button" href="lobbyProfesor.html" >Volver</a>
                 </div>
                 <div class = "col">
-                    <input class="boton" type="submit" value="Registrar" role="button">
+                    <input class="boton" type="submit" value="Clonar" role="button">
                 </div>
             </div>
             

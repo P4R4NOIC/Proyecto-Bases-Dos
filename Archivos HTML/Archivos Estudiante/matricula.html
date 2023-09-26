@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosGenerales.css">
     <link rel="stylesheet" href="../../Archivos CSS/estilosMatricula.css">
     <!-- JS -->
+    <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
     
 </head>
-<body class = "body">
+<body onload="cargarPagina()" class = "body">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -30,8 +31,8 @@
                         <a class="nav-link active" href="buscarPersonaEstud.html">Buscar Persona</a>
                 </div>
             </div>
-            <a class="nav-link disabled">ESTUDIANTE</a>
-            <a class="btn btn-danger" type="submit" href="../Archivos Compartidos/login.html">Cerrar Sesión</a>
+            <a id="nombreEstudiante" class="nav-link disabled">ESTUDIANTE</a>
+            <a class="btn btn-danger" type="submit" onclick="cierreSesion()">Cerrar Sesión</a>
             
         </div>
     </nav>

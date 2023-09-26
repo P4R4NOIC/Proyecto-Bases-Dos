@@ -2,6 +2,15 @@
 var contenedorPreguntas = document.getElementById("preguntas");
 var presionado = new Boolean(false)
 
+function cargarPagina(){
+    //FUNCION DE AUTENTICACION DE USUARIO
+    autenticar()
+    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    
+    //CARGA LA PAGINA CUANDO TODO ESTA LISTO
+    document.addEventListener("DOMContentLoaded", cargarPagina);
+}
+
 function generarPreguntas(value){
 
     if(presionado == false){

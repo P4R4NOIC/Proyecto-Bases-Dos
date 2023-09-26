@@ -6,8 +6,9 @@ var cursos = [{"curso":"Bases de datos","estado":"Disponible"},
 function cargarPagina(){
     
     autenticar()
-    
-    document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
+    let usuarioJSON = localStorage.getItem("usuario");
+    let usuario = JSON.parse(usuarioJSON);
+    document.getElementById("nombreEstudiante").textContent = usuario.nombre;
 
 
 

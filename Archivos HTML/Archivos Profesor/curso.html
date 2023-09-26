@@ -69,18 +69,18 @@
                     <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                       Seleccionar Sección
                     </button>
-                    <ul class="dropdown-menu w-50 menu menu1" aria-labelledby="dropdownMenuButton1" id = "lista">
+                    <ul class="dropdown-menu w-50 menu menu1" aria-labelledby="dropdownMenuButton1" id = "lista1">
     
                     </ul>
                 </div>
             </div>
             <!-- LABEL AGREGAR TEMA A SECCION -->
             <div class = "col-6" style = "margin-left: -200px;">
-                <button id="botonAgregarSeccion" class="btn boton botonProfe" type="button" role="button" href="#" disabled>Agregar tema a seccion</button>
+                <button id="botonAgregarSeccion" class="btn boton botonProfe" type="button" role="button" href="#" onclick = "botonAgregarSeccion()" disabled>Agregar Seccion al curso</button>
             </div>
             <!-- BOTON AGREGAR TEMA A SECCION -->
             <div class = "col texto" style = "margin-left: -110px; margin-top: 22px; margin-right: 50px;">
-                <input id="agregarTemaSeccion" class="form-control entrada" placeholder="Tema a sección" autofocus="" disabled> 
+                <input id="agregarTemaSeccion" class="form-control entrada" placeholder="Tema a sección" autofocus=""  disabled> 
             </div>
 
         </div>
@@ -88,7 +88,7 @@
         <div class = "row justify-content-center">
              <!-- BOTON DE ARCHIVO -->
              <div class = "col-5" style = "margin-bottom: 10px;">
-                <button id = "agregarArchivoSeccion" class="btn boton botonProfe" type="button" role="button" disabled>Subir archivo a seccion</button>
+                <button id = "agregarArchivoSeccion" class="btn boton botonProfe" type="button" role="button" onclick = "botonSubirArchivoSeccion()" disabled>Subir archivo a seccion</button>
                 
             </div>
            
@@ -111,16 +111,14 @@
                     <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                       Seleccionar Tema
                     </button>
-                    <ul class="dropdown-menu w-50 menu menu2" aria-labelledby="dropdownMenuButton2">
-                      <li><a class="dropdown-item" onclick="actualizarTema(this)">Action</a></li>
-                      <li><a class="dropdown-item" onclick="actualizarTema(this)">Another action</a></li>
-                      <li><a class="dropdown-item" onclick="actualizarTema(this)">Something else here</a></li>
+                    <ul class="dropdown-menu w-50 menu menu2" aria-labelledby="dropdownMenuButton2" id = "lista2">
+                  
                     </ul>
                   </div>
             </div>
             <!-- LABEL AGREGAR TEMA A SECCION -->
             <div class = "col-6" style = "margin-left: -190px;">
-                <button id="botonAgregarTema" class="btn boton botonProfe" type="button" role="button" href="#" disabled>Agregar Subtema</button>
+                <button id="botonAgregarTema" class="btn boton botonProfe" type="button" role="button" href="#" onclick = "botonAgregaTema()" disabled>Agregar Tema a la Seccion</button>
             </div>
             <!-- BOTON AGREGAR TEMA A SECCION -->
             <div class = "col texto" style = "margin-left: -110px; margin-top: 22px; margin-right: 50px;">
@@ -131,7 +129,7 @@
         <div class = "row justify-content-center">
              <!-- BOTON DE ARCHIVO -->
               <div class = "col-5" style = "margin-bottom: 10px; margin-left: -9px;">
-                <button id = "agregarArchivoTema" class="btn boton botonProfe" type="button" role="button" disabled>Subir archivo a tema</button>                
+                <button id = "agregarArchivoTema" class="btn boton botonProfe" type="button" role="button" onclick = "botonSubirArchivoTema()" disabled>Subir archivo a tema</button>                
             </div>
            
             <div class = "col" style = "margin-top: 20px; margin-left: -80px;">
@@ -145,32 +143,39 @@
     <div class = "SubTemas cajas">
         <div class = "row justify-content-center">
             <!-- DROPDOWN -->
-            <div class = "col-5" style = "margin-left: -10px; margin-right: 10px;;">
+            <div class = "col-5" style = "margin-left: -10px;">
                 <div class="dropdown">
                     <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                       Seleccionar Sub-tema
                     </button>
-                    <ul class="dropdown-menu w-50 menu" aria-labelledby="dropdownMenuButton3" >
-                      <li><a class="dropdown-item" onclick="actualizarSubTema(this)">Action</a></li>
-                      <li><a class="dropdown-item" onclick="actualizarSubTema(this)">Another action</a></li>
-                      <li><a class="dropdown-item" onclick="actualizarSubTema(this)">Something else here</a></li>
+                    <ul class="dropdown-menu w-50 menu menu3" aria-labelledby="dropdownMenuButton3" id = "lista3">
+                     
                     </ul>
-                  </div>
+                </div>
             </div>
-          
-            
+            <!-- ------------------------------------- -->
+            <!-- LABEL AGREGAR SUBTEMA A TEMA -->
+            <div class = "col-6" style = "margin-left: -190px;">
+                <button id="botonAgregarSubTema" class="btn boton botonProfe" type="button" role="button" href="#" onclick = "botonAgregaSubTema()" disabled>Agregar Subtema a tema</button>
+            </div>
+            <!-- BOTON AGREGAR TEMA A SECCION -->
+            <div class = "col texto" style = "margin-left: -110px; margin-top: 22px; margin-right: 50px;">
+                <input id="agregarSubTemaTitulo" class="form-control entrada" placeholder="Subtema" autofocus="" disabled> 
+            </div>
+            <!-- ------------------------------------- -->
+        </div>
+        <!-- BOTON AGREGAR ARCHIVO A SECCION -->
+        <div class = "row justify-content-center">
             <!-- BOTON DE ARCHIVO -->
-            <div class = "col-5" style = "margin-bottom: 10px; margin-left: -9px; margin-left: -200px;">
-                <button id = "agregarArchivoSubTema" class="btn boton botonProfe" type="button" role="button" disabled>Subir archivo a sub-tema</button> 
+            <div class = "col-5" style = "margin-bottom: 10px; margin-left: -9px;">
+                <button id = "agregarArchivoSubTema" class="btn boton botonProfe" type="button" role="button" onclick = "botonSubirArchivoSubTema()" disabled>Subir archivo a sub-tema</button> 
             </div>
-           
-            <div class = "col" style = "margin-top: 20px; margin-left: -100px;">
+        
+            <div class = "col" style = "margin-top: 20px; margin-left: -80px;">
                 <label class = "foto">Subir Archivo:</label>
                 <input class ="foto" type="file" id="archivoSubTema" name="myImage" accept="image/png, image/jpeg" disabled>
             </div>
-            
         </div>
-
     </div>
 
     <!-- LISTA DESPLEGADA -->
