@@ -1,6 +1,7 @@
 var seccionesCargadas = new Boolean(true);
 var seccionSeleccionada;
 var temaSeleccionado;
+var subTemaSeleccionado;
 var lista1Cargada = new Boolean(true);
 var lista2Cargada = new Boolean(true);
 var lista3Cargada = new Boolean(true);
@@ -218,7 +219,7 @@ function cargaSubtemas(seccion, tema){
 
 function cargaFinal(seccion, tema, subtema){
     document.getElementById("tituloTabla").textContent = "Secciones/Tema/Sub-tema/Fin";
-    
+    subTemaSeleccionado = subtema;
     var table = document.getElementById("cuerpoTabla");
     var rowCount = table.rows.length;
 
@@ -264,13 +265,28 @@ function creaListas(contenido, cantidad){
 
 function botonSubirArchivoSeccion(){
 
-}
-function botonSubirArchivoTema(){
+    var documento = document.getElementById("archivoSeccion").value;
+    entrada[seccionSeleccionada]["contenido"].push(documento);
+    var contenido = entrada[seccionSeleccionada]["contenido"].length
+    for(var i = 0; i < contenido; i++){
+        creaListas(entrada[seccionSeleccionada]["contenido"][i],i);
+    }
 
+}
+
+function botonSubirArchivoTema(){
+    var documento = document.getElementById("archivoTema").value;
+    entrada[seccionSeleccionada]["temas"][temaSeleccionado]["contenido"].push(documento);
+    var contenido = entrada[seccionSeleccionada]["temas"][temaSeleccionado]["contenido"].length;
+    for(var i = 0; i < contenido; i++){
+        creaListas(entrada[seccionSeleccionada]["temas"][temaSeleccionado]["contenido"][i], i);
+    }
 }
 
 function botonSubirArchivoSubTema(){
-
+    var documento = document.getElementById("archivoSubTema").value;
+    entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].push(documento);
+    
 }
 
 function botonAgregarSeccion(){
@@ -427,23 +443,25 @@ function activaDesactivaSecciones(estado){
     document.getElementById("botonAgregarSeccion").disabled = estado;
     document.getElementById("agregarTemaSeccion").disabled = estado;
     document.getElementById("agregarTemaSeccion").value = '';
-    document.getElementById("agregarArchivoSeccion").disabled = estado;
-    document.getElementById("archivoSeccion").disabled = estado;
+
     document.getElementById("archivoSeccion").value = '';
 }
 
 function activaDesactivaTemas(estado){
+    document.getElementById("agregarArchivoSeccion").disabled = estado;
+    document.getElementById("archivoSeccion").disabled = estado;
     document.getElementById("dropdownMenuButton2").disabled = estado;
     document.getElementById("dropdownMenuButton2").innerHTML = "Seleccionar Tema";
     document.getElementById("botonAgregarTema").disabled = estado;
     document.getElementById("agregarSubTema").disabled = estado;
     document.getElementById("agregarSubTema").value = '';
-    document.getElementById("agregarArchivoTema").disabled = estado;
-    document.getElementById("archivoTema").disabled = estado;
+   
     document.getElementById("archivoTema").value = '';
 }
 
 function activaDesactivaSubTemas(estado){
+    document.getElementById("agregarArchivoTema").disabled = estado;
+    document.getElementById("archivoTema").disabled = estado;
     document.getElementById("dropdownMenuButton3").disabled = estado;
     document.getElementById("dropdownMenuButton3").innerHTML = "Seleccionar Sub-Tema";
     document.getElementById("agregarArchivoSubTema").disabled = estado;

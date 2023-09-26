@@ -7,8 +7,11 @@ function cargarPagina(){
     
     autenticar()
     let usuarioJSON = localStorage.getItem("usuario");
-    let usuario = JSON.parse(usuarioJSON);
-    document.getElementById("nombreEstudiante").textContent = usuario.nombre;
+    var usuario = JSON.parse(usuarioJSON);
+    var nombre = usuario.nombre;
+    console.log(usuario);
+    console.log(usuario.nombre);
+    document.getElementById("nombreEstudiante").textContent = nombre;
 
 
 
