@@ -3,41 +3,13 @@ var evaluacionesPrevias = [{"evaluacion":"Prueba 1", "valor":"10%"},
                             {"evaluacion":"Prueba 2", "valor":"20%"},
                             {"evaluacion":"Prueba 3", "valor":"70%"}]
 
-var evaluacion = {"idCurso":"bla bla",
-                  "id":"1",
-                  "nombre":"bla bla",
-                  "inicio":"1/2/3", 
-                  "fin":"1/2/3"}
+var evaluacion = {"idCurso":"",
+                  "id":"",
+                  "nombre":"",
+                  "inicio":"", 
+                  "fin":""}
                             
-var preguntas = {"idEvaluacion":evaluacion["id"],
-                "preguntas":[
-                {"id":"1",
-                "pregunta":"nombre", 
-                "correcta":"bla bla", 
-                "opcionB":"bla bla", 
-                "opcionC":"bla bla",
-                "opcionD":"bla bla"},
-                 
-                {"id":"2",
-                "pregunta":"nombre", 
-                "correcta":"bla bla", 
-                "opcionB":"bla bla", 
-                "opcionC":"bla bla",
-                "opcionD":"bla bla"}, 
-                
-                {"id":"3",
-                "pregunta":"nombre", 
-                "correcta":"bla bla", 
-                "opcionB":"bla bla", 
-                "opcionC":"bla bla",
-                "opcionD":"bla bla"}, 
-                
-                {"id":"4",
-                "pregunta":"nombre", 
-                "correcta":"bla bla", 
-                "opcionB":"bla bla", 
-                "opcionC":"bla bla",
-                "opcionD":"bla bla"}]}
+var preguntas = {"idEvaluacion":"", "preguntas":[]}
                             
 
 var contenedorPreguntas = document.getElementById("preguntas");
@@ -58,16 +30,58 @@ function cargarPagina(){
 
 function guardarBoton(){
 
-    var idPregunta = "pregunta" + i;
-    var pregunta = document.getElementById("pregunta" + 1).value
-    console.log(pregunta);
+    var codigo = document.getElementById("codigoEval").value;
+    var nombre = document.getElementById("agregaNombreEval").value;
+    var inicio = document.getElementById("fecEvaInit").value;
+    var fin = document.getElementById("fecEvaEnd").value;
+
+    evaluacion["idCurso"] = localStorage.getItem("codigoCursoActual");
+    evaluacion["id"] = codigo;
+    evaluacion["nombre"] = nombre;
+    evaluacion["inicio"] = inicio;
+    evaluacion["fin"] = fin;
+
+    preguntas["idEvaluacion"] = evaluacion["id"];
+   
     for(var i = 0; i < cantPreguntas; i++){
-      
+        var nuevaPregunta = {"id":"", "pregunta":"", "correcta":"", "opcionB":"", "opcionC":"", "opcionD":""}
+        var idPregunta = "pregunta" + (i+1);
+        var pregunta = document.getElementById("pregunta" + (i+1)).value
+        var respuestaCorrecta = document.getElementById("pregunta" + (i+1) + "respuestaCorrecta").value;
+        var respuestaB = document.getElementById("pregunta" + (i+1) + "respuestaIncorrecta1").value;
+        var respuestaC = document.getElementById("pregunta" + (i+1) + "respuestaIncorrecta2").value;
+        var respuestaD = document.getElementById("pregunta" + (i+1) + "respuestaIncorrecta3").value;
+
+        nuevaPregunta["id"] = idPregunta;
+        nuevaPregunta["pregunta"] = pregunta;
+        nuevaPregunta["correcta"] = respuestaCorrecta;
+        nuevaPregunta["opcionB"] = respuestaB;
+        nuevaPregunta["opcionC"] = respuestaC;
+        nuevaPregunta["opcionD"] = respuestaD;
+        
+        preguntas["preguntas"].push(nuevaPregunta);
+        
     }
 
+    pruebaTodo();
 
-    console.log(localStorage.getItem("codigoCursoActual"))
     
+}
+
+function pruebaTodo(){
+    console.log(evaluacion["idCurso"])
+    console.log(evaluacion["id"])
+    console.log(evaluacion["nombre"])
+    console.log(evaluacion["inicio"])
+    console.log(evaluacion["fin"])
+
+    console.log(preguntas["preguntas"].length)
+    console.log(preguntas["preguntas"][1]["id"])
+    console.log(preguntas["preguntas"][1]["pregunta"])
+    console.log(preguntas["preguntas"][1]["correcta"])
+    console.log(preguntas["preguntas"][1]["opcionB"])
+    console.log(preguntas["preguntas"][1]["opcionC"])
+    console.log(preguntas["preguntas"][1 ]["opcionD"])
 }
 
 function creaEvaluacion(){
@@ -103,6 +117,9 @@ function generarPreguntas(value){
 
 
 
+
+   document.getElementById("botonGuarda").disabled = false; 
+
     if(presionado == false){
     
         var i = value-1;
@@ -113,8 +130,20 @@ function generarPreguntas(value){
             var clone = elem.cloneNode(true);
             clone.id = "preguntas" + i;
             document.getElementById('lab').innerHTML = 'Pregunta ' + i;
+   
             elem.after(clone);  
         }
+
+
+        var j = 0
+        for(j; j < value; j++){
+            document.getElementById("pregunta").id = "pregunta" + (j+1);
+            document.getElementById("correcta").id = "pregunta" + (j+1) + "respuestaCorrecta";
+            document.getElementById("incorrecta1").id = "pregunta" + (j+1) + "respuestaIncorrecta1";
+            document.getElementById("incorrecta2").id = "pregunta" + (j+1) + "respuestaIncorrecta2";
+            document.getElementById("incorrecta3").id = "pregunta" + (j+1) + "respuestaIncorrecta3";
+        }
+
     }
     presionado = true;
     

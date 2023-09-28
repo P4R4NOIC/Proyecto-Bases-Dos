@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let estadoCurso = document.getElementById("estadoCurso").value;
         let foto = document.getElementById("myImg").value;
         if (document.getElementById("estadoCurso").selectedIndex == 0) {
-            alert('Por favor, seleccione un curso antes de enviar el formulario.');
+            alert('Por favor, seleccione un estado para el curso antes de enviar el formulario.');
         }else{
             let datosUsuario = {
                 codigo: codigoCurso,
@@ -34,9 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 foto: foto,
                 nombre: nombreCurso
             };
-            nombreUsuario = JSON.stringify(localStorage.getItem("usuario")).username
+            let usuarioJSON = localStorage.getItem("usuario");
+            var usuario = JSON.parse(usuarioJSON);
+            var nombre = usuario.nombre;
             let cursoParaProfe = {
-                codigo_profesor: nombreUsuario,
+                codigo_profesor: nombre,
                 codigo_curso: codigoCurso,
                 descripcion: desCurso,
                 estado: estadoCurso,

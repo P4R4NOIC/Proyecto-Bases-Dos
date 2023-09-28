@@ -1,24 +1,3 @@
-const cursos = [
-    {
-        "codigoCurso": "BD-200",
-        "nombreCurso": "Bases de Datos",
-        "descripcion": "Un curso sobre Bases de Datos.",
-        "fechaInicio": "2023-10-01",
-        "fechaFin": "2023-12-15",
-        "estado": true,
-        "direccionFoto": "imagen-curso.jpg"
-    },
-    {
-        "codigoCurso": "BD-201",
-        "nombreCurso": "Bases de Datos II",
-        "descripcion": "Un curso avanzado sobre Bases de Datos.",
-        "fechaInicio": "2023-11-01",
-        "fechaFin": "2023-12-31",
-        "estado": false,
-        "direccionFoto": "imagen-curso-avanzado.jpg"
-    }
-]
-
 
 function cargarPagina(){
     //FUNCION DE AUTENTICACION DE USUARIO
@@ -31,11 +10,12 @@ function cargarPagina(){
 }
 
 function cargarSeleccionCurso(){
+    cursos = JSON.parse(localStorage.getItem("cursos"));
     let nuevoSelect = document.querySelector(".selectCurso");
     for (var i = 0; i < cursos.length; i++) {
         let opcion = document.createElement("option");
-        opcion.text = cursos[i].nombreCurso;
-        opcion.value = cursos[i].codigoCurso;
+        opcion.text = cursos[i].nombre;
+        opcion.value = cursos[i].codigo_curso;
         console.log(opcion)
         nuevoSelect.appendChild(opcion);
     }

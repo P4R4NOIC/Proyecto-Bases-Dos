@@ -61,20 +61,12 @@
                     <input id="agregaNombreEval" class="form-control entrada" placeholder="Nombre de la evaluación" autofocus="" required> 
                 </div>
                 <div class="row">
-                    <div class="dropdown menu">
-                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Selecciona cantidad de preguntas (5-25)
-                        </button>
-                        <ul class="dropdown-menu w-50 menu opciones" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" onclick = "generarPreguntas(5)">5</a></li>
-                            <li><a class="dropdown-item" onclick = "generarPreguntas(10)">10</a></li>
-                            <li><a class="dropdown-item" onclick = "generarPreguntas(15)">15</a></li>
-                            <li><a class="dropdown-item" onclick = "generarPreguntas(20)">20</a></li>
-                            <li><a class="dropdown-item" onclick = "generarPreguntas(25)">25</a></li>
-                        </ul>
-                    </div>
+                  
+                        <input id="codigoEval" class="form-control entrada" style = "margin-top: 32px;"placeholder="Código" autofocus="" required>       
+
                 </div>
             </div>
+            
 
             <div class="col">
                 <div class="row">
@@ -93,7 +85,7 @@
 
             <div class="col">
                 <div class = "row">
-                    <a class="boton botonProfe" type="button" role="button" href="#" onclick = "guardarBoton()">Guardar</a>
+                    <button class="btn boton botonProfe" type="button" role="button" href="#" onclick = "guardarBoton()" id = "botonGuarda" disabled>Guardar</button>
                 </div>
                 <div class = "row">
                     <a class="boton botonProfe" type="button" role="button" href="curso.html">Volver</a>
@@ -103,24 +95,35 @@
 
 
         </div>
-
+        <div class="dropdown menu">
+            <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Selecciona cantidad de preguntas (5-25)
+            </button>
+            <ul class="dropdown-menu w-50 menu opciones" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" onclick = "generarPreguntas(5)">5</a></li>
+                <li><a class="dropdown-item" onclick = "generarPreguntas(10)">10</a></li>
+                <li><a class="dropdown-item" onclick = "generarPreguntas(15)">15</a></li>
+                <li><a class="dropdown-item" onclick = "generarPreguntas(20)">20</a></li>
+                <li><a class="dropdown-item" onclick = "generarPreguntas(25)">25</a></li>
+            </ul>
+        </div>
         <!-- PREGUNTAS -->
         <div class="row preguntas" id = "preguntas">
 
             <div class="col">
                 <label class="labels menosLabel" id = "lab" >Pregunta</label>
-                <textarea class="form-control entrada" id="pregunta1" rows="3"></textarea>
+                <textarea class="form-control entrada" id="pregunta" rows="3"></textarea>
             </div>
 
             <div class="col">
-                <input id="pregunta1respuestaCorrecta" class="form-control entrada" placeholder="Respuesta correcta" autofocus="" required> 
-                <input id="pregunta1respuestaIncorrecta1" class="form-control entrada" placeholder="Respuesta incorrecta 1" autofocus="" required> 
-                <input id="pregunta1respuestaIncorrecta2" class="form-control entrada" placeholder="Respuesta incorrecta 2" autofocus="" required> 
-                <input id="pregunta1respuestaIncorrecta3" class="form-control entrada" placeholder="Respuesta incorrecta 3" autofocus="" required> 
+                <input id="correcta" class="form-control entrada" placeholder="Respuesta correcta" autofocus="" required> 
+                <input id="incorrecta1" class="form-control entrada" placeholder="Respuesta incorrecta 1" autofocus="" required> 
+                <input id="incorrecta2" class="form-control entrada" placeholder="Respuesta incorrecta 2" autofocus="" required> 
+                <input id="incorrecta3" class="form-control entrada" placeholder="Respuesta incorrecta 3" autofocus="" required> 
             </div>
 
         </div>
-        
+
     </div>
     
     

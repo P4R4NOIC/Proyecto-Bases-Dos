@@ -27,7 +27,7 @@ function cargarCursosProfesor(){
     let cursos = JSON.parse(localStorage.getItem("cursos"));
     for(var i = 0; i < cursos.length; i++){
         
-        var idCurso = "curso";
+        var idCurso = "nombre";
         var idEstado = "estado";
         
 
@@ -38,10 +38,12 @@ function cargarCursosProfesor(){
 
 function pedirCursos(){
 
-    var nombreDeUsuario = JSON.parse(localStorage.getItem("usuario")).username;
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombreDeUsuario = usuario.username;
     let datosRecibidos;
     // Hacer la solicitud GET al servidor
-    fetch('http://localhost:3000/Usuario/'+nombreDeUsuario)
+    fetch('http://localhost:3000/CursosProfesor/'+nombreDeUsuario)
     .then(response => {
         if (!response.ok) {
             alert('No se pudo obtener la información del usuario');

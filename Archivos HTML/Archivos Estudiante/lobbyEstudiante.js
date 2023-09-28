@@ -27,7 +27,7 @@ function cargarCursosEstudiante(){
     let cursos = JSON.parse(localStorage.getItem("cursos"));
     for(var i = 0; i < cursos.length; i++){
         
-        var idCurso = "curso";
+        var idCurso = "nombre";
         var idEstado = "estado";
         
 
@@ -39,11 +39,12 @@ function cargarCursosEstudiante(){
 }
 
 function pedirCursos(){
-
-    var nombreDeUsuario = JSON.parse(localStorage.getItem("usuario")).username;
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombreDeUsuario = usuario.username;
     let datosRecibidos;
     // Hacer la solicitud GET al servidor
-    fetch('http://localhost:3000/Usuario/'+nombreDeUsuario)
+    fetch('http://localhost:3000/MateriasMatriculadas/'+nombreDeUsuario)
     .then(response => {
         if (!response.ok) {
             alert('No se pudo obtener la información del usuario');
@@ -88,6 +89,15 @@ function creaListas(contenido,estado,cantidad){
 }
 
 function guardaCursoActual(cursoActual){
+    var cursos = JSON.parse(localStorage.getItem("cursos"));
+   
+    for(var i = 0; i < cursos.length; i++ ){
+
+        if(cursoActual == cursos[i]["curso"]){
+            localStorage.setItem("codigoCursoActual", cursos[i]["codigo"])
+        }
+    }
+    
     localStorage.setItem("cursoActual", cursoActual);
     location.href = "cursoEstudiante.html";
 }

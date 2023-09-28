@@ -59,9 +59,10 @@ function cargarPersonas(tipo){
     ]
     localStorage.setItem("personas", JSON.stringify(personasJSON))
     //BORRAR
+
     let personas = JSON.parse(localStorage.getItem("personas"));
     for (i = 0; i < personas.length; i++) {
-        var persona = personas[i].nombre;
+        var persona = personas[i].nombre + " " + personas[i].segundonombre + " " + personas[i].primerapellido + " " + personas[i].segundoapellido ;
         var ele = document.createElement("a")
         ele.classList = "personas list-group-item list-group-item-dark"
         ele.href = "#";
@@ -82,10 +83,11 @@ function cargarPersonas(tipo){
 }
 
 function pedirPersonas(){
-    var nombreDeUsuario = JSON.parse(localStorage.getItem("usuario")).username;
-    let datosRecibidos;
+    let datosRecibidosEstudiantes;
+    let datosRecibidosProfes;
+    // ------------------------------- FETCH ESTUDIANTES
     // Hacer la solicitud GET al servidor
-    fetch('http://localhost:3000/Usuario/'+nombreDeUsuario)
+    fetch('http://localhost:3000/Todos-Usuarios')
     .then(response => {
         if (!response.ok) {
             alert('No se pudo obtener la información del usuario');
@@ -94,13 +96,40 @@ function pedirPersonas(){
     })
     .then(data => {
         // Datos recibidos
-        datosRecibidos = data;
-        localStorage.setItem("personas", JSON.stringify(datosRecibidos))
-
+        datosRecibidosEstudiantes = data;
+        localStorage.setItem("todosEstudiantes", JSON.stringify(datosRecibidosEstudiantes))
     })
     .catch(error => {
         console.error('Error al obtener la información del usuario:', error);
     });
+    // ------------------------------- FETCH PROFES
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/Todos-Profes')
+    .then(response => {
+        if (!response.ok) {
+            alert('No se pudo obtener la información del usuario');
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        datosRecibidosProfes = data;
+        localStorage.setItem("todosProfes", JSON.stringify(datosRecibidosProfes))
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
+    
+    var datosEstudiantes = JSON.parse(localStorage.getItem("todosEstudiantes"));
+    var datosProfes = JSON.parse(localStorage.getItem("todosProfes"));
+
+    var datosCombinados = {
+        estudiantes: datosEstudiantes,
+        profesores: datosProfes
+    };
+
+    localStorage.setItem("datosCombinadosProfes", JSON.stringify(datosCombinados));
+
 }
 
 function pedirAmigos(){
