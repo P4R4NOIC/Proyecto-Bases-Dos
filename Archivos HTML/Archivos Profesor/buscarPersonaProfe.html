@@ -15,7 +15,7 @@
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
     <script type = "text/javaScript" src = "../Archivos Compartidos/buscarPersona.js"></script>
 </head>
-<body onload="cargarPagina()" class = "body">
+<body onload="cargarPagina('todos')" class = "body">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -29,6 +29,7 @@
                         <a class="nav-link" href="mensajesVistaProfe.html">Mensajes</a>
                         <a class="nav-link" href="../Archivos Compartidos/crearUsuario.html">Ajustes</a>
                         <a class="nav-link" href="buscarPersonaProfe.html">Buscar Persona</a>
+                        <a class="nav-link" href="listaAmigosProfe.html">Amigos</a>
                         
                 </div>
             </div>
@@ -37,7 +38,6 @@
             
         </div>
     </nav>
-
     <!-- input tag -->
     <div class="caja">
         <input class="form-control me-2" id="searchbar" onkeyup="buscarPersona()" type="text" name="search" placeholder="Buscar personas">

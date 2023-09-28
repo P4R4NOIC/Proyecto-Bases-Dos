@@ -14,26 +14,66 @@ document.addEventListener("DOMContentLoaded", function () {
     formulario.addEventListener ("submit", function(event) {
         //EVITA QUE SE ENVIE
         event.preventDefault();
+        
         let codigoCurso = document.getElementById("codigoCurso").value;
         let nombreCurso = document.getElementById("nombreCurso").value;
         let desCurso = document.getElementById("desCurso").value;
         let cursoInicio = document.getElementById("cursoInicio").value;
         let cursoFin = document.getElementById("cursoFin").value;
-        let estadoCurso = document.getElementById("estadoCurso").checked;
-        let foto = document.getElementById("myImg").value
-        
-        let datosUsuario = {
-            codigoCurso: codigoCurso,
-            nombreCurso: nombreCurso,
-            desCurso: desCurso,
-            cursoInicio: cursoInicio,
-            cursoFin: cursoFin,
-            estadoCurso: estadoCurso,
-            foto: foto
-        };
-        let datosUsuarioJSON = JSON.stringify(datosUsuario);
-        alert(datosUsuarioJSON)
-        //CREAR DATOS EN BASE
+        let estadoCurso = document.getElementById("estadoCurso").value;
+        let foto = document.getElementById("myImg").value;
+        if (document.getElementById("estadoCurso").selectedIndex == 0) {
+            alert('Por favor, seleccione un curso antes de enviar el formulario.');
+        }else{
+            let datosUsuario = {
+                codigoCurso: codigoCurso,
+                cursoInicio: cursoInicio,
+                cursoFin: cursoFin,
+                desCurso: desCurso,
+                estadoCurso: estadoCurso,
+                foto: foto,
+                nombreCurso: nombreCurso
+            };
+            nombreUsuario = JSON.stringify(localStorage.getItem("usuario")).username
+            let cursoParaProfe = {
+                username: nombreUsuario,
+                codigoCurso: codigoCurso,
+                cursoInicio: cursoInicio,
+                cursoFin: cursoFin,
+                desCurso: desCurso,
+                estadoCurso: estadoCurso,
+                foto: foto,
+                nombreCurso: nombreCurso
+            };
+            let datosUsuarioJSON = JSON.stringify(datosUsuario);
+            let cursoParaProfeJSON = JSON.stringify(cursoParaProfe);
+            //subirDatosCurso(datosUsuarioJSON);
+            //registrarCursoParaUnProfe(cursoParaProfeJSON);
+            alert("Su curso ha sido creado con éxito.");
+            console.log(datosUsuarioJSON);
+            console.log(cursoParaProfeJSON);
+            //location.href("lobbyProfesor.html");
+        }
         
     })
 });
+
+function subirDatosCurso(datos){
+    fetch('http://localhost:3000/RegistrarCurso', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datos
+    })
+}
+
+function registrarCursoParaUnProfe(datos){
+    fetch('http://localhost:3000/RegistrarCursoProfesor', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datos
+    })
+}

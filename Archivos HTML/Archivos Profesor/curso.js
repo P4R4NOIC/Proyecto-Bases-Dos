@@ -6,7 +6,35 @@ var lista1Cargada = new Boolean(true);
 var lista2Cargada = new Boolean(true);
 var lista3Cargada = new Boolean(true);
 var lista4Cargada = new Boolean(true);
-var entrada = [{"seccion":"Referencias", "contenido":["iguana.txt", "lagarto.pdf", "lagartijo.pptx"], 
+var entrada;
+
+
+
+function cargarPagina(){
+    //FUNCION DE AUTENTICACION DE USUARIO
+    autenticar()
+    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    entrada["idCurso"] = localStorage.getItem("cursoActual").
+    cargarFunciones()
+    //CARGA LA PAGINA CUANDO TODO ESTA LISTO
+    document.addEventListener("DOMContentLoaded", cargarPagina);
+}
+
+function cargarFunciones(){
+
+    document.getElementById("tituloCurso").textContent = localStorage.getItem("cursoActual");
+   
+    document.getElementById("tituloTabla").textContent = "Secciones";
+    cargaTodo();
+    cargarSecciones();
+}
+
+function cargaTodo(){
+    //llama a la base con el nombre del curso actual
+    //pedirTodo();
+    //---BORRAR
+    var prueba = { "idCurso":"", 
+            "secciones":[{"seccion":"Referencias", "contenido":["iguana.txt", "lagarto.pdf", "lagartijo.pptx"], 
                 
                 "temas":[ {"tema":"Referencias++", "contenido":["sube.rar", "baja.cpp", "derecha.cpp", "izquierda.cpp", "cero.cpp"], 
                             
@@ -21,28 +49,35 @@ var entrada = [{"seccion":"Referencias", "contenido":["iguana.txt", "lagarto.pdf
                {"seccion":"Notas", "contenido":["contenido", "enNotas"], "temas":[{"tema":"temaNotas"}]}, 
 
 
-               {"seccion":"Otro", "contenido":["otro","fin"], "temas":[]}]
+               {"seccion":"Otro", "contenido":["otro","fin"], "temas":[]}]}
 
-
-
-function cargarPagina(){
-    //FUNCION DE AUTENTICACION DE USUARIO
-    autenticar()
-    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
-    cargarFunciones()
-    //CARGA LA PAGINA CUANDO TODO ESTA LISTO
-    document.addEventListener("DOMContentLoaded", cargarPagina);
+    localStorage.setItem("secciones", JSON.stringify(prueba));
+    //---BORRAR
+    entrada = JSON.parse(localStorage.getItem("secciones"))
+    
 }
 
-function cargarFunciones(){
+function pedirTodo(){
+    var nombreCurso = JSON.parse(localStorage.getItem("cursoActual")).nombreCurso;
+    let datosRecibidos;
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/Usuario/'+nombreCurso)
+    .then(response => {
+        if (!response.ok) {
+            alert('No se pudo obtener la información del usuario');
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        datosRecibidos = data;
+        localStorage.setItem("secciones", JSON.stringify(datosRecibidos))
 
-    document.getElementById("tituloCurso").textContent = localStorage.getItem("cursoActual");
-   
-    document.getElementById("tituloTabla").textContent = "Secciones";
-    cargarSecciones();
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
 }
-
-
 
 //CARGA SECCIONES AL INICIAR
 function cargarSecciones(){
@@ -286,6 +321,10 @@ function botonSubirArchivoTema(){
 function botonSubirArchivoSubTema(){
     var documento = document.getElementById("archivoSubTema").value;
     entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].push(documento);
+    var contenido = entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].length
+    for(var i = 0; i < contenido; i++){
+        creaListas(entrada[seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"][i],i);
+    }
     
 }
 
@@ -425,8 +464,9 @@ function actualizarSubTema(item, tema, seccion){
             break;
         }
     }
-
+    activaDesactivaFinal(false);
     cargaFinal(seccion, tema, i);
+    
     //---------------------------
 }
 
@@ -464,10 +504,14 @@ function activaDesactivaSubTemas(estado){
     document.getElementById("archivoTema").disabled = estado;
     document.getElementById("dropdownMenuButton3").disabled = estado;
     document.getElementById("dropdownMenuButton3").innerHTML = "Seleccionar Sub-Tema";
-    document.getElementById("agregarArchivoSubTema").disabled = estado;
-    document.getElementById("archivoSubTema").disabled = estado;
     document.getElementById("archivoSubTema").value = '';
     document.getElementById("botonAgregarSubTema").disabled = estado;
     document.getElementById("agregarSubTemaTitulo").disabled = estado;
     document.getElementById("agregarSubTemaTitulo").value = '';
+}
+
+function activaDesactivaFinal(estado){
+    console.log("estado")
+    document.getElementById("agregarArchivoSubTema").disabled = estado;
+    document.getElementById("archivoSubTema").disabled = estado;
 }

@@ -1,19 +1,30 @@
 
-var cursos = [{"curso":"Bases de datos","estado":"Disponible"},
-              {"curso":"Bases de datos 2", "estado":"Finalizado"}, 
-              {"curso":"Lenguajes de programacion", "estado":"En curso"}]
-
-
-
-
 function cargarPagina(){
     
     autenticar()
-    
+    //let usuarioJSON = localStorage.getItem("usuario");
+    //var usuario = JSON.parse(usuarioJSON);
+    //var nombre = usuario.nombre;
+    //console.log(usuario);
+    //console.log(usuario.nombre);
+    //document.getElementById("nombreProfesor").textContent = nombre;
     document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+   
+    cargarCursosProfesor()
 
 
+    document.addEventListener("DOMContentLoaded", cargarPagina);
+}
 
+function cargarCursosProfesor(){
+    //pedirCursos()
+    //---BORRAR
+    var cursosEst = [{"curso":"Bases de datos","estado":"Disponible"},
+              {"curso":"Bases de datos 2", "estado":"Finalizado"}, 
+              {"curso":"Lenguajes de programacion", "estado":"En curso"}]
+    localStorage.setItem("cursos", JSON.stringify(cursosEst))
+    //---BORRAR
+    let cursos = JSON.parse(localStorage.getItem("cursos"));
     for(var i = 0; i < cursos.length; i++){
         
         var idCurso = "curso";
@@ -22,11 +33,30 @@ function cargarPagina(){
 
         creaListas(cursos[i][idCurso], cursos[i][idEstado], i);
 
-        
-        
     }
+}
 
-    document.addEventListener("DOMContentLoaded", cargarPagina);
+function pedirCursos(){
+
+    var nombreDeUsuario = JSON.parse(localStorage.getItem("usuario")).username;
+    let datosRecibidos;
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/Usuario/'+nombreDeUsuario)
+    .then(response => {
+        if (!response.ok) {
+            alert('No se pudo obtener la información del usuario');
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        datosRecibidos = data;
+        localStorage.setItem("cursos", JSON.stringify(datosRecibidos))
+
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
 }
 
 function creaListas(contenido,estado,cantidad){

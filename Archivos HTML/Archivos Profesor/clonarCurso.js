@@ -54,22 +54,47 @@ document.addEventListener("DOMContentLoaded", function () {
         let desCurso = document.getElementById("desCurso").value;
         let cursoInicio = document.getElementById("cursoInicio").value;
         let cursoFin = document.getElementById("cursoFin").value;
-        let estadoCurso = document.getElementById("estadoCurso").checked;
+        let estadoCurso = document.getElementById("estadoCurso").value;
         let foto = document.getElementById("myImg").value;
-        
-        let datosUsuario = {
-            codigoParaCopiar: codigoParaCopiar,
-            codigoCurso: codigoCurso,
-            nombreCurso: nombreCurso,
-            desCurso: desCurso,
-            cursoInicio: cursoInicio,
-            cursoFin: cursoFin,
-            estadoCurso: estadoCurso,
-            foto: foto
-        };
-        let datosUsuarioJSON = JSON.stringify(datosUsuario);
-        alert(datosUsuarioJSON)
-        //ACTUALIZAR DATOS EN BASE
-        
+
+        if (document.getElementById("select").selectedIndex == 0 || document.getElementById("estadoCurso").selectedIndex == 0) {
+            alert('Por favor rellene los selectores faltantes');
+        }else{
+            let datosUsuario = {
+                codigoParaCopiar: codigoParaCopiar,
+                codigoCurso: codigoCurso,
+                nombreCurso: nombreCurso,
+                desCurso: desCurso,
+                cursoInicio: cursoInicio,
+                cursoFin: cursoFin,
+                estadoCurso: estadoCurso,
+                foto: foto
+            };
+            let datosUsuarioJSON = JSON.stringify(datosUsuario);
+            //subirDatosCurso(datosUsuarioJSON);
+            //registrarCursoParaUnProfe(datosUsuarioJSON);
+            alert(datosUsuarioJSON)
+        }
     })
 });
+
+function subirDatosCurso(datos){
+    fetch('http://localhost:3000/RegistrarCurso', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datos
+    })
+}
+
+function registrarCursoParaUnProfe(datos){
+    usuario = JSON.stringify(localStorage.getItem("usuario")).username
+    fetch('http://localhost:3000/RegistrarCursoProfesor', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datos
+    })
+}

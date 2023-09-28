@@ -30,6 +30,7 @@
                         <a class="nav-link" href="mensajesVistaProfe.html">Mensajes</a>
                         <a class="nav-link" href="../Archivos Compartidos/crearUsuario.html">Ajustes</a>
                         <a class="nav-link" href="buscarPersonaProfe.html">Buscar Persona</a>
+                        <a class="nav-link" href="listaAmigosProfe.html">Amigos</a>
                         
                 </div>
             </div>
@@ -70,10 +71,13 @@
             <input class = "fecNac" type="date" id="cursoFin" required>
             
             <!-- INPUT SWITCH -->
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="estadoCurso" style="margin-left: 25%">
-                <label class="form-check-label" for="estadoCurso" style="margin-right: 25%">Curso Público</label>
-            </div>
+            <select id="estadoCurso" class="form-select entrada selectCurso" >
+                <option selected>Seleccionar estado</option>
+                <option value="En curso">En Curso</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Finalizado">Finalizado</option>
+            </select>
+            
             
             <!-- INPUT PHOTO -->
             <div class = "row justify-content-center">
