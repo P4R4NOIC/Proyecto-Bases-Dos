@@ -19,9 +19,9 @@ function cargarPagina(){
 function cargarCursosProfesor(){
     //pedirCursos()
     //---BORRAR
-    var cursosEst = [{"curso":"Bases de datos","estado":"Disponible"},
-              {"curso":"Bases de datos 2", "estado":"Finalizado"}, 
-              {"curso":"Lenguajes de programacion", "estado":"En curso"}]
+    var cursosEst = [{"curso":"Bases de datos","estado":"Disponible","codigo":"IC-500"},
+              {"curso":"Bases de datos 2", "estado":"Finalizado","codigo":"IC-785"}, 
+              {"curso":"Lenguajes de programacion", "estado":"En curso","codigo":"HI-200"}]
     localStorage.setItem("cursos", JSON.stringify(cursosEst))
     //---BORRAR
     let cursos = JSON.parse(localStorage.getItem("cursos"));

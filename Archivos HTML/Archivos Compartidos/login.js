@@ -30,13 +30,12 @@ function validaCorreo() {
     } 
     else if(correoProfesorValido.test(email) && contrasena != ""){
         // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
-        logInProfesor(email);
-        // ------------------------------------------------------------------------------- //
-
+        //logInProfesor(email);
+        
         localStorage.setItem("conexion", "PROFE")
         localStorage.setItem("usuario", email)
-    
         location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
+        // ------------------------------------------------------------------------------- //
     }
     
     else {
@@ -75,4 +74,22 @@ function logInEstudiante(email){
 function logInProfesor(email){
     var nombreDeUsuario = email;
     let inputUsuario;
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/Profesor/'+nombreDeUsuario)
+    .then(response => {
+        if (!response.ok) {
+            alert('No se pudo obtener la información del usuario');
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        inputUsuario = data;
+        localStorage.setItem("conexion", "PROFE")
+        localStorage.setItem("usuario", JSON.stringify(inputUsuario))
+        location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
 }

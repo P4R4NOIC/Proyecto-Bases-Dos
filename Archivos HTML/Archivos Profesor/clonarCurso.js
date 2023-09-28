@@ -63,17 +63,33 @@ document.addEventListener("DOMContentLoaded", function () {
             let datosUsuario = {
                 codigoParaCopiar: codigoParaCopiar,
                 codigoCurso: codigoCurso,
-                nombreCurso: nombreCurso,
-                desCurso: desCurso,
                 cursoInicio: cursoInicio,
                 cursoFin: cursoFin,
+                desCurso: desCurso,
                 estadoCurso: estadoCurso,
-                foto: foto
+                foto: foto,
+                nombreCurso: nombreCurso
+            };
+            nombreUsuario = JSON.stringify(localStorage.getItem("usuario")).username
+            let cursoParaProfe = {
+                username: nombreUsuario,
+                codigoParaCopiar: codigoParaCopiar,
+                codigoCurso: codigoCurso,
+                cursoInicio: cursoInicio,
+                cursoFin: cursoFin,
+                desCurso: desCurso,
+                estadoCurso: estadoCurso,
+                foto: foto,
+                nombreCurso: nombreCurso
             };
             let datosUsuarioJSON = JSON.stringify(datosUsuario);
+            let cursoParaProfeJSON = JSON.stringify(cursoParaProfe);
             //subirDatosCurso(datosUsuarioJSON);
-            //registrarCursoParaUnProfe(datosUsuarioJSON);
-            alert(datosUsuarioJSON)
+            //registrarCursoParaUnProfe(cursoParaProfeJSON);
+            alert("Su curso ha sido copiado con éxito.");
+            console.log(datosUsuarioJSON);
+            console.log(cursoParaProfeJSON);
+            //location.href("lobbyProfesor.html");
         }
     })
 });
@@ -89,7 +105,6 @@ function subirDatosCurso(datos){
 }
 
 function registrarCursoParaUnProfe(datos){
-    usuario = JSON.stringify(localStorage.getItem("usuario")).username
     fetch('http://localhost:3000/RegistrarCursoProfesor', {
         method: 'POST',
         headers: {

@@ -58,6 +58,7 @@ function cargarPagina(){
 
 function guardarBoton(){
     
+    console.log(localStorage.getItem("cursos").codigo)
 }
 
 function creaEvaluacion(){
