@@ -26,24 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
             alert('Por favor, seleccione un curso antes de enviar el formulario.');
         }else{
             let datosUsuario = {
-                codigoCurso: codigoCurso,
-                cursoInicio: cursoInicio,
-                cursoFin: cursoFin,
-                desCurso: desCurso,
-                estadoCurso: estadoCurso,
+                codigo: codigoCurso,
+                fechainit: cursoInicio,
+                fechafinal: cursoFin,
+                descripcion: desCurso,
+                estado: estadoCurso,
                 foto: foto,
-                nombreCurso: nombreCurso
+                nombre: nombreCurso
             };
             nombreUsuario = JSON.stringify(localStorage.getItem("usuario")).username
             let cursoParaProfe = {
-                username: nombreUsuario,
-                codigoCurso: codigoCurso,
-                cursoInicio: cursoInicio,
-                cursoFin: cursoFin,
-                desCurso: desCurso,
-                estadoCurso: estadoCurso,
+                codigo_profesor: nombreUsuario,
+                codigo_curso: codigoCurso,
+                descripcion: desCurso,
+                estado: estadoCurso,
+                fechafinal: cursoFin,
+                fechainit: cursoInicio,
                 foto: foto,
-                nombreCurso: nombreCurso
+                nombre: nombreCurso
             };
             let datosUsuarioJSON = JSON.stringify(datosUsuario);
             let cursoParaProfeJSON = JSON.stringify(cursoParaProfe);

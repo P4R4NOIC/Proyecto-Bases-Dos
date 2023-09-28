@@ -1,4 +1,4 @@
-
+var cantPreguntas;
 var evaluacionesPrevias = [{"evaluacion":"Prueba 1", "valor":"10%"}, 
                             {"evaluacion":"Prueba 2", "valor":"20%"},
                             {"evaluacion":"Prueba 3", "valor":"70%"}]
@@ -9,7 +9,7 @@ var evaluacion = {"idCurso":"bla bla",
                   "inicio":"1/2/3", 
                   "fin":"1/2/3"}
                             
-var preguntas ={"idEvaluacion":evaluacion["id"],
+var preguntas = {"idEvaluacion":evaluacion["id"],
                 "preguntas":[
                 {"id":"1",
                 "pregunta":"nombre", 
@@ -57,8 +57,17 @@ function cargarPagina(){
 
 
 function guardarBoton(){
+
+    var idPregunta = "pregunta" + i;
+    var pregunta = document.getElementById("pregunta" + 1).value
+    console.log(pregunta);
+    for(var i = 0; i < cantPreguntas; i++){
+      
+    }
+
+
+    console.log(localStorage.getItem("codigoCursoActual"))
     
-    console.log(localStorage.getItem("cursos").codigo)
 }
 
 function creaEvaluacion(){
@@ -90,6 +99,9 @@ function cargaEvaluacionesPrevias(){
 
 
 function generarPreguntas(value){
+    cantPreguntas = value;
+
+
 
     if(presionado == false){
     

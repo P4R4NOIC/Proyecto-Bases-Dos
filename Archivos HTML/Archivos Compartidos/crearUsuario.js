@@ -6,7 +6,7 @@ function cambiaTexto(){
         document.getElementById("inputUsuario").placeholder = "Usuario @estudiantec.cr";
     }
     else{
-        document.getElementById("inputUsuario").placeholder = "Usuario @itcr.cr";
+        document.getElementById("inputUsuario").placeholder = "Usuario @itcr.ac.cr";
     }
 
     if(localStorage.getItem("conexion") == "PROFE" || localStorage.getItem("conexion") == "ESTUD"){
@@ -53,6 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
         let fecNac = document.getElementById("birthday").value;
         let img = document.getElementById("myImg").value;
         
+        //Convierte en JSON
+        let datosUsuario = {
+            usuario: usuario,
+            contrasena: contrasena,
+            fecNac: fecNac,
+            img: img,
+            primNombre: primNombre,
+            primApellido: primApellido,
+            salt: "basico",
+            segApellido: segApellido,
+            segNombre: segNombre
+        };
+        let datosUsuarioJSON = JSON.stringify(datosUsuario);
+
+        
         // REGISTRA USUARIOS COMO ESTUDIANTE
         if(localStorage.getItem("estudiante")  == "v"){
             if(
@@ -64,27 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
             fecNac != "" && 
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
-                    //Convierte en JSON
-                    let datosUsuario = {
-                        usuario: usuario,
-                        contrasena: contrasena,
-                        fecNac: fecNac,
-                        img: img,
-                        primNombre: primNombre,
-                        primApellido: primApellido,
-                        salt: "basico",
-                        segApellido: segApellido,
-                        segNombre: segNombre
-                    };
-                    let datosUsuarioJSON = JSON.stringify(datosUsuario);
                     //GUARDA EN BASE DE DATOS
-                    fetch('http://localhost:3000/RegistrarEstudiante', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: datosUsuarioJSON
-                    })
+                    //registrarEstudiante(datosUsuarioJSON);
                     alert("Sus datos han sido guardados")
                     history.back();
                 }else{
@@ -99,27 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if(correoProfesorValido.test(usuario)  && contrasena != "" && contraConfirma != "" && primNombre != "" && primApellido != "" && fecNac != "" && 
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
-                    //Convierte en JSON
-                    let datosUsuario = {
-                        usuario: usuario,
-                        contrasena: contrasena,
-                        salt: "basico",
-                        primNombre: primNombre,
-                        segNombre: segNombre,
-                        primApellido: primApellido,
-                        segApellido: segApellido,
-                        fecNac: fecNac,
-                        img: img
-                    };
-                    let datosUsuarioJSON = JSON.stringify(datosUsuario);
                     //GUARDA EN BASE DE DATOS
-                    fetch('http://localhost:3000/RegistrarProfesor', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: datosUsuarioJSON
-                    })
+                    //registrarProfesor(datosUsuarioJSON);
                     alert("Sus datos han sido guardados")
                     history.back();
                 }else{
@@ -135,20 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if(contrasena != "" && contraConfirma != "" && primNombre != "" && primApellido != "" && fecNac != "" && 
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
-                    //Convierte en JSON
-                    let datosUsuario = {
-                        usuario: usuario,
-                        contrasena: contrasena,
-                        salt: "basico",
-                        primNombre: primNombre,
-                        segNombre: segNombre,
-                        primApellido: primApellido,
-                        segApellido: segApellido,
-                        fecNac: fecNac,
-                        img: img
-                    };
-                    let datosUsuarioJSON = JSON.stringify(datosUsuario);
                     //ACTUALIZA EN BASE DE DATOS
+                    //actualizarProfesor(datosUsuarioJSON);
+                    alert("Sus datos han sido actualizado")
+                    history.back();
 
                 }else{
                     alert("Las contraseñas no coinciden")
@@ -163,21 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if(contrasena != "" && contraConfirma != "" && primNombre != "" && primApellido != "" && fecNac != "" && 
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
-                    //Convierte en JSON
-                    let datosUsuario = {
-                        usuario: usuario,
-                        contrasena: contrasena,
-                        salt: "basico",
-                        primNombre: primNombre,
-                        segNombre: segNombre,
-                        primApellido: primApellido,
-                        segApellido: segApellido,
-                        fecNac: fecNac,
-                        img: img
-                    };
-                    let datosUsuarioJSON = JSON.stringify(datosUsuario);
                     //ACTUALIZA EN BASE DE DATOS
-                    
+                    //actualizarEstudiante(datosUsuarioJSON);
+                    alert("Sus datos han sido actualizado")
+                    history.back();
                 }else{
                     alert("Las contraseñas no coinciden")
                 }
@@ -188,3 +144,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 });
+
+function registrarEstudiante(datosUsuarioJSON){
+    fetch('http://localhost:3000/RegistrarEstudiante', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datosUsuarioJSON
+    })
+}
+
+function registrarProfesor(datosUsuarioJSON){
+    fetch('http://localhost:3000/RegistrarProfesor', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datosUsuarioJSON
+    })
+}
+
+function actualizarProfesor(datosUsuarioJSON){
+    
+}
+
+function actualizarEstudiante(datosUsuarioJSON){
+
+}

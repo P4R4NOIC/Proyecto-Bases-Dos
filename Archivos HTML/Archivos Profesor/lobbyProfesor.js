@@ -9,7 +9,7 @@ function cargarPagina(){
     //console.log(usuario.nombre);
     //document.getElementById("nombreProfesor").textContent = nombre;
     document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
-   
+    
     cargarCursosProfesor()
 
 
@@ -86,6 +86,15 @@ function creaListas(contenido,estado,cantidad){
 }
 
 function guardaCursoActual(cursoActual){
+    var cursos = JSON.parse(localStorage.getItem("cursos"));
+   
+    for(var i = 0; i < cursos.length; i++ ){
+
+        if(cursoActual == cursos[i]["curso"]){
+            localStorage.setItem("codigoCursoActual", cursos[i]["codigo"])
+        }
+    }
+    
     localStorage.setItem("cursoActual", cursoActual);
     location.href = "curso.html";
 }
