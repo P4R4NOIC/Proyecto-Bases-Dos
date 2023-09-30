@@ -1,7 +1,8 @@
 var cantPreguntas;
-var evaluacionesPrevias = [{"evaluacion":"Prueba 1", "valor":"10%"}, 
+var evaluacionesPrevias = {"idCurso":localStorage.getItem("codigoCursoActual"),
+                            "evaluaciones":[{"evaluacion":"Prueba 1", "valor":"10%"}, 
                             {"evaluacion":"Prueba 2", "valor":"20%"},
-                            {"evaluacion":"Prueba 3", "valor":"70%"}]
+                            {"evaluacion":"Prueba 3", "valor":"70%"}]}
 
 var evaluacion = {"idCurso":"",
                   "id":"",
@@ -62,27 +63,15 @@ function guardarBoton(){
         preguntas["preguntas"].push(nuevaPregunta);
         
     }
+   
+    JSON.stringify(preguntas);
 
-    pruebaTodo();
+
 
     
 }
 
-function pruebaTodo(){
-    console.log(evaluacion["idCurso"])
-    console.log(evaluacion["id"])
-    console.log(evaluacion["nombre"])
-    console.log(evaluacion["inicio"])
-    console.log(evaluacion["fin"])
 
-    console.log(preguntas["preguntas"].length)
-    console.log(preguntas["preguntas"][1]["id"])
-    console.log(preguntas["preguntas"][1]["pregunta"])
-    console.log(preguntas["preguntas"][1]["correcta"])
-    console.log(preguntas["preguntas"][1]["opcionB"])
-    console.log(preguntas["preguntas"][1]["opcionC"])
-    console.log(preguntas["preguntas"][1 ]["opcionD"])
-}
 
 function creaEvaluacion(){
 
@@ -90,7 +79,7 @@ function creaEvaluacion(){
 
 function cargaEvaluacionesPrevias(){
     
-  for(var i = 0; i < evaluacionesPrevias.length; i++){
+  for(var i = 0; i < evaluacionesPrevias["evaluaciones"].length; i++){
     var li = document.createElement("li");
     var div1 = document.createElement("div");
     var div2 = document.createElement("div");
@@ -99,9 +88,9 @@ function cargaEvaluacionesPrevias(){
     li.classList = "list-group-item d-flex justify-content-between align-items-start eval";
     div1.classList = "ms-2 me-auto";
     div2.classList = "fw-bold";
-    div2.textContent = evaluacionesPrevias[i]["evaluacion"];
+    div2.textContent = evaluacionesPrevias["evaluaciones"][i]["evaluacion"];
     span.classList = "badge bg-primary rounded-pill";
-    span.textContent = evaluacionesPrevias[i]["valor"];
+    span.textContent = evaluacionesPrevias["evaluaciones"][i]["valor"];
 
     div1.appendChild(div2);
     li.appendChild(div1);

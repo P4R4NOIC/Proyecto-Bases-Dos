@@ -295,6 +295,7 @@ function creaListas(contenido, cantidad){
     refer.classList = "cursosH cursos";
     refer.id = "filaTabla" + (cantidad+1); 
     refer.textContent = contenido;
+    refer.href = contenido;
     th.append(refer);
     tr.appendChild(th);
     document.querySelector(".cuerpoTabla").appendChild(tr)
@@ -323,6 +324,7 @@ function botonSubirArchivoTema(){
 
 function botonSubirArchivoSubTema(){
     var documento = document.getElementById("archivoSubTema").value;
+    documento.href = documento;
     entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].push(documento);
     var contenido = entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].length
     for(var i = 0; i < contenido; i++){
@@ -404,6 +406,8 @@ function botonAgregaSubTema(){
     document.querySelector(".menu3").appendChild(ele);
                 
     creaListas(entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][largo-1]["subtema"], largo-1);
+
+   
             
 }
 

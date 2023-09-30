@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosMensaje.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "correoVistaProfe.js"></script>
     
 </head>
 <body onload="cargarPagina()" class = "body">
@@ -41,29 +42,29 @@
 
     
     <div class="container">
-        <form>
+        <form id="formulario">
             <div class="mb-3">
-                <label for="" class="form-label" style = "color: white;">De</label>
-                <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com">
+                <label for="de" class="form-label" style = "color: white;" >De</label>
+                <input type="email" class="form-control" id="de" aria-describedby="emailHelpId" placeholder="abc@mail.com">
                
             </div>
         
             <div class="mb-3">
-                <label for="" class="form-label" style = "color: white;">Para</label>
-                <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com">
+                <label for="para" class="form-label" style = "color: white;" >Para</label>
+                <input type="email" class="form-control" id="para" aria-describedby="emailHelpId" placeholder="abc@mail.com">
             </div>
         
             <div class="mb-3">
-                <label for="" class="form-label" style = "color: white;">Asunto</label>
-                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                <label for="asunto" class="form-label" style = "color: white;">Asunto</label>
+                <input type="text" class="form-control" id="asunto" aria-describedby="helpId" placeholder="">
             </div>
         
             <div class="mb-3">
-                <label for="" class="form-label" style = "color: white;">Mensaje</label>
-                <textarea class="form-control" name="" id="" rows="3"></textarea>
+                <label for="mensaje" class="form-label" style = "color: white;">Mensaje</label>
+                <textarea class="form-control" id="mensaje" rows="3"></textarea>
             </div>
         
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary" id = "enviarBoton" onclick = "guardaCorreo()">Enviar</button>
         </form>
     </div>
     

@@ -10,7 +10,7 @@ function cambiaTexto(){
     }
 
     if(localStorage.getItem("conexion") == "PROFE" || localStorage.getItem("conexion") == "ESTUD"){
-        let usuarioConectado = localStorage.getItem("usuario");
+        let usuarioConectado = JSON.parse(localStorage.getItem("usuario"));
         document.getElementById("titulo").textContent = "EDITA TUS DATOS";
         let inputUsuario = document.getElementById("inputUsuario");
         inputUsuario.placeholder = localStorage.getItem("usuario");
@@ -18,13 +18,13 @@ function cambiaTexto(){
         inputUsuario.readOnly = true;
 
         //RELLENAR CON DATOS DEL USUARIO TOMADAS DEL LOCALSTORAGE
-        document.getElementById("inputUsuario").value       = usuarioConectado.usuario;
-        document.getElementById("inputPrimNombre").value    = usuarioConectado.priNombre;
-        document.getElementById("inputSegNombre").value     = usuarioConectado.segNombre;
-        document.getElementById("inputPrimApellido").value  = usuarioConectado.priApellido;
-        document.getElementById("inputSegApellido").value   = usuarioConectado.segApellido;
-        document.getElementById("birthday").value           = usuarioConectado.fecNac;
-        document.getElementById("myImg").value              = usuarioConectado.img;
+        document.getElementById("inputUsuario").value       = usuarioConectado.username;
+        document.getElementById("inputPrimNombre").value    = usuarioConectado.nombre;
+        document.getElementById("inputSegNombre").value     = usuarioConectado.segundonombre;
+        document.getElementById("inputPrimApellido").value  = usuarioConectado.primerapellido;
+        document.getElementById("inputSegApellido").value   = usuarioConectado.segundoapellido;
+        document.getElementById("birthday").value           = usuarioConectado.fechanacimiento;
+        document.getElementById("myImg").value              = usuarioConectado.foto;
     }
 
 }

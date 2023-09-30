@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosMensaje.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "mensajesVistaProfe.js"></script>
     
 </head>
 <body onload="cargarPagina()" class = "body">
@@ -43,11 +44,11 @@
         <div class="row" style="width: 85%; margin-top: 15px;">
             <div class="col-3 ">
                 <div class="row">
-                    <a class="boton botonProfe" type="button" role="button" href="#">Enviados</a>
+                    <a class="boton botonProfe" type="button" role="button" onclick="cargarEnviados()">Enviados</a>
                 </div>
 
                 <div class="row">
-                    <a class="boton botonProfe" type="button" role="button" href="#">Recibidos</a>
+                    <a class="boton botonProfe" type="button" role="button" onclick="cargarRecibidos()">Recibidos</a>
                 </div>
 
                 <div class="row">
@@ -58,25 +59,18 @@
             <div class="col-9 mensajes">
                 <div class="row">
                     <div class="col-4">
-                      <div class="list-group recibidos rec" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-dark" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Home</a>
-                        <a class="list-group-item list-group-item-dark" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Profile</a>
-                        <a class="list-group-item list-group-item-dark" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Messages</a>
-                        <a class="list-group-item list-group-item-dark" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Settings</a>
-                      </div>
+                        <div class="list-group recibidos rec" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-dark" id="mensaje1" data-bs-toggle="list" href="#panel1" role="tab">Home</a>
+                        </div>
                     </div>
                     <div class="col-8">
-                      <div class="tab-content recibidos" id="nav-tabContent">
-                        <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Testos1</div>
-                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Testos2</div>
-                        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Testos3</div>
-                        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"> 
-                            Se deben usar al menos 4 bases de datos de la siguiente lista para poder completar la tarea, es importante destacar que en la documentación debe estar la justificación de porque se decidió usar cada una y el modelaje para cada una.
-                            
+                        <div class="tab-content recibidos" id="nav-tabContent">
+                            <div class="tab-pane fade" id="panel1" role="tabpanel"> 
+                                <textarea id="textArea" rows="20" cols="80" readonly></textarea> 
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -85,4 +79,3 @@
 
 
 </body>
-</html>

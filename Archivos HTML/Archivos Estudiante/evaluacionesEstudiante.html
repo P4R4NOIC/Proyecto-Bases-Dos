@@ -52,29 +52,24 @@
         <label class="tituloEvaluaciones">Responder evaluaciones</label>
     </div>
 
+    
+
     <div class="creaEval">
         <div class="row">
             <div class="col">
 
-                <div class="row">
-                    <div class="dropdown menu">
-                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Seleccione evaluación
-                        </button>
-                        <ul class="dropdown-menu w-50 menu opciones" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" onclick = "">Quiz 1</a></li>
-                            <li><a class="dropdown-item" onclick = "">Quiz 2</a></li>
-                            <li><a class="dropdown-item" onclick = "">Quiz 3</a></li>
-                            <li><a class="dropdown-item" onclick = "">Quiz 4</a></li>
-                            <li><a class="dropdown-item" onclick = "">Quiz 5</a></li>
-                        </ul>
-                    </div>
-                </div>
+               
 
                 <div class="row ">
                     <label class = "labels menosLabel" for="">Evaluación seleccionada</label>
                     <input type="text" id="agregaNombreEval" class="form-control entrada" placeholder="Nombre de la evaluación" disabled> 
                 </div>
+
+                <div class="row">
+                  
+                    <input id="codigoEval" class="form-control entrada" style = "margin-top: 32px;"placeholder="Código" autofocus="" disabled>       
+            </div>
+
             </div>
 
             <div class="col">
@@ -94,7 +89,7 @@
 
             <div class="col">
                 <div class = "row">
-                    <a class="boton botonProfe" type="button" role="button" href="cursoEstudiante.html">Volver</a>
+                    <a class="boton botonProfe" type="button" role="button" href="cursoEstudiante.html" >Volver</a>
                 </div>
             </div>
 
@@ -102,43 +97,19 @@
         </div>
 
         <!-- PREGUNTAS -->
-        <div class="row preguntas" id = "preguntas">
-            <div class="col">
-                <label class="labels menosLabel" id = "lab">Pregunta</label>
-                <textarea class="form-control entrada" id="pregunta1" rows="3" readonly></textarea>
-            </div>
-            <div class="col">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="#">
-                    <label class="labels menosLabel" for="flexRadioDefault1">
-                        Default radio
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="#">
-                    <label class="labels menosLabel" for="flexRadioDefault2">
-                        Default checked radioa sdfgasdjkgklñjg kñsklñs lsjksdgklñadklñjgklñjdklgjaklñs
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="#">
-                    <label class="labels menosLabel" for="flexRadioDefault3">
-                        Default checked radio
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" value="#">
-                    <label class="labels menosLabel" for="flexRadioDefault4">
-                        Default checked radio
-                    </label>
-                </div>
-            </div>
+        <div class = "todasPreguntas">
+
+         <div class="row preguntas">
+
+          
+
         </div>
 
-        <div class = "row">
-            <a class="boton botonProfe" type="button" role="button" href="#" style = "margin-bottom: 100px;">Guardar respuestas</a>
-        </div>
+    </div>
+    
 
+    <div class = "row">
+        <a class="boton botonProfe" type="button" role="button" href="#" style = "margin-bottom: 100px;">Guardar respuestas</a>
     </div>
 </body>
 </html>

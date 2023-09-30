@@ -16,12 +16,17 @@ function validaCorreo() {
     var correoProfesorValido = /^[a-zA-Z0-9_-]+(@itcr.ac.cr)$/;
     var contrasena = document.getElementById("inputPassword").value
     
-    
+    if (correoEstudianteValido.test(email)){
+        //logInEstudiante(email,contrasena);
+    }
+
+    if (correoProfesorValido.test(email)){
+        //logInProfesor(email,contrasena);
+    }
+
+    //BORRAR-----------------------
     if (correoEstudianteValido.test(email) && contrasena != "")
     {
-        // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
-        //logInEstudiante(email);
-
         localStorage.setItem("conexion", "ESTUD")
         localStorage.setItem("usuario", email)
         location.href = "../../Archivos HTML/Archivos Estudiante/lobbyEstudiante.html"
@@ -29,41 +34,42 @@ function validaCorreo() {
       
     } 
     else if(correoProfesorValido.test(email) && contrasena != ""){
-        // -- AQUI VA A IR LA VALIDACION CON LA BASE DE DATOS DE UN ESTUDIANTE CORRECTO -- //
-        //logInProfesor(email);
-        
         localStorage.setItem("conexion", "PROFE")
         localStorage.setItem("usuario", email)
         location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
         // ------------------------------------------------------------------------------- //
     }
+    //BORRAR------------------------
     
-    else {
-        var myModalEl = document.querySelector('#myModal')
-        var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
-        modal.show()
-        document.getElementById("inputEmail").value = ""
-        document.getElementById("inputPassword").value = ""
-    }
 }
 
-function logInEstudiante(email){
+function logInEstudiante(email,contrasena){
     var nombreDeUsuario = email;
     let inputUsuario;
     // Hacer la solicitud GET al servidor
     fetch('http://localhost:3000/Usuario/'+nombreDeUsuario)
     .then(response => {
         if (!response.ok) {
-            alert('No se pudo obtener la información del usuario');
+            activarModalError("No se pudo obtener la información del usuario");
         }
         return response.json(); // Parsea la respuesta JSON
     })
     .then(data => {
         // Datos recibidos
         inputUsuario = data;
-        localStorage.setItem("conexion", "ESTUD")
         localStorage.setItem("usuario", JSON.stringify(inputUsuario))
-        location.href = "../../Archivos HTML/Archivos Estudiante/lobbyEstudiante.html"
+        
+        let usuarioJSON = localStorage.getItem("usuario");
+        var usuario = JSON.parse(usuarioJSON);
+        var contraUsuario = usuario.contra; 
+        if(contrasena === contraUsuario){
+            localStorage.setItem("conexion", "ESTUD")
+            location.href = "../../Archivos HTML/Archivos Estudiante/lobbyEstudiante.html"
+        }else{
+            localStorage.removeItem("usuario");
+            activarModalError("La contraseña o el usuario son invalidos");
+        }
+        
 
     })
     .catch(error => {
@@ -71,23 +77,43 @@ function logInEstudiante(email){
     });
 }
 
-function logInProfesor(email){
+function activarModalError(error){
+    var myModalEl = document.querySelector('#myModal')
+    var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+    modal.show()
+    document.getElementById("inputEmail").value = ""
+    document.getElementById("inputPassword").value = ""
+    var textoModal = document.querySelector(".modal-body");
+    textoModal.textContent = error;
+}
+
+function logInProfesor(email,contrasena){
     var nombreDeUsuario = email;
     let inputUsuario;
     // Hacer la solicitud GET al servidor
     fetch('http://localhost:3000/Profesor/'+nombreDeUsuario)
     .then(response => {
         if (!response.ok) {
-            alert('No se pudo obtener la información del usuario');
+            activarModalError("No se pudo obtener la información del usuario");
         }
         return response.json(); // Parsea la respuesta JSON
     })
     .then(data => {
         // Datos recibidos
         inputUsuario = data;
-        localStorage.setItem("conexion", "PROFE")
         localStorage.setItem("usuario", JSON.stringify(inputUsuario))
-        location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
+        
+        let usuarioJSON = localStorage.getItem("usuario");
+        var usuario = JSON.parse(usuarioJSON);
+        var contraUsuario = usuario.contra; 
+        if(contrasena === contraUsuario){
+            localStorage.setItem("conexion", "PROFE")
+            location.href = "../../Archivos HTML/Archivos Profesor/lobbyProfesor.html"
+        }else{
+            localStorage.removeItem("usuario");
+            activarModalError("La contraseña o el usuario son invalidos");
+        }
+
     })
     .catch(error => {
         console.error('Error al obtener la información del usuario:', error);

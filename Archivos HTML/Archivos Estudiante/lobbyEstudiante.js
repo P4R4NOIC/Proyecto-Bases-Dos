@@ -5,24 +5,22 @@ function cargarPagina(){
     //let usuarioJSON = localStorage.getItem("usuario");
     //var usuario = JSON.parse(usuarioJSON);
     //var nombre = usuario.nombre;
-    //console.log(usuario);
-    //console.log(usuario.nombre);
     //document.getElementById("nombreEstudiante").textContent = nombre;
     document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
 
-    cargarCursosEstudiante()
+    pedirCursos()
+    
 
     
-    document.addEventListener("DOMContentLoaded", cargarPagina);
 }
 
 function cargarCursosEstudiante(){
-    //pedirCursos()
+    
     //---BORRAR
-    var cursosEst = [{"curso":"Bases de datos","estado":"Disponible"},
+    /* var cursosEst = [{"curso":"Bases de datos","estado":"Disponible"},
               {"curso":"Bases de datos 2", "estado":"Finalizado"}, 
               {"curso":"Lenguajes de programacion", "estado":"En curso"}]
-    localStorage.setItem("cursos", JSON.stringify(cursosEst))
+    localStorage.setItem("cursos", JSON.stringify(cursosEst)) */
     //---BORRAR
     let cursos = JSON.parse(localStorage.getItem("cursos"));
     for(var i = 0; i < cursos.length; i++){
@@ -55,7 +53,7 @@ function pedirCursos(){
         // Datos recibidos
         datosRecibidos = data;
         localStorage.setItem("cursos", JSON.stringify(datosRecibidos))
-
+        cargarCursosEstudiante()
     })
     .catch(error => {
         console.error('Error al obtener la información del usuario:', error);

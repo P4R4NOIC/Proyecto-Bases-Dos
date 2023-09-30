@@ -3,8 +3,7 @@ function cargarPagina(){
     autenticar()
     document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
     
-    //CARGA LA PAGINA CUANDO TODO ESTA LISTO
-    document.addEventListener("DOMContentLoaded", cargarPagina);
+    
 }
 
 
