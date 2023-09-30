@@ -81,7 +81,7 @@
                 <div class="row">
                     <!-- INPUT FECHA FIN -->
                     <label class="labels menosLabel">Fin de evaluación:</label>
-                    <input class = "fecNac" type="date" value="2023-09-24" id="fecEvaEnd" disabled>
+                    <input class = "fecNac" type="date" id="fecEvaEnd" value="2023-09-24"  disabled>
                 </div>
                 
             </div>
@@ -97,9 +97,9 @@
         </div>
 
         <!-- PREGUNTAS -->
-        <div class = "todasPreguntas">
+        <div class = "todasPreguntas" id = "todasPreguntas">
 
-         <div class="row preguntas">
+         
 
           
 
@@ -109,7 +109,7 @@
     
 
     <div class = "row">
-        <a class="boton botonProfe" type="button" role="button" href="#" style = "margin-bottom: 100px;">Guardar respuestas</a>
+        <button class="btn boton botonProfe" type="button" role="button" href="#" style = "margin-bottom: 100px;" id="botonGuarda" onclick="botonGuardaRespuestas()" >Guardar respuestas</button>
     </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-
+var contestado = new Boolean(false);
 var evaluacionesPorEstudiante = {"codigoUsuario":"", 
                                  "codigoCurso":"", 
                                  "nombreCurso":"", 
@@ -14,8 +14,8 @@ var evaluacionesPorEstudiante = {"codigoUsuario":"",
 var evaluacion = {"idCurso":"",
                   "id":"EV1",
                   "nombre":"Eval1",
-                  "inicio":"", 
-                  "fin":""}
+                  "inicio":"2002-12-06", 
+                  "fin":"2023-09-23"}
                             
 var preguntas = {"idEvaluacion":"EV1", "preguntas":[{"id":"pregunta1", 
                                                   "pregunta":"¿como se centra un div?", 
@@ -66,6 +66,8 @@ function cargarPagina(){
     document.addEventListener("DOMContentLoaded", cargarPagina);
 }
 
+
+
 function cargaEvaluacionesPrevias(){
     
     for(var i = 0; i < evaluacionesPorEstudiante["evaluaciones"].length; i++){
@@ -86,14 +88,23 @@ function cargaEvaluacionesPrevias(){
       li.appendChild(span);
       document.querySelector(".lista").appendChild(li);
     }
-  }
+}
+
 
 
 function cargaPreguntas(){
+
   document.getElementById("agregaNombreEval").placeholder = evaluacion["nombre"];
   document.getElementById("codigoEval").placeholder = evaluacion["id"];
+  document.getElementById("fecEvaInit").value = evaluacion["inicio"];
+  document.getElementById("fecEvaEnd").value = evaluacion["fin"];
+ 
+
   var cantidadPreguntas = preguntas["preguntas"].length;
+
+  if(contestado == false){
   for(var i = 0; i < cantidadPreguntas; i++){
+ 
     var div1 = document.createElement("div");
     var div2 = document.createElement("div");
     var div3 = document.createElement("div");
@@ -180,7 +191,7 @@ function cargaPreguntas(){
     input3.classList = "form-check-input";
     input3.type = "radio";
     input3.name = "flexRadioDefault" + (i+1);
-    input3.id = "incorrecta" + (i+1) + "Pregunta" + (i+1); 
+    input3.id = "incorrecta" + (i+2) + "Pregunta" + (i+1); 
     input3.value = "#";
 
     label3.classList = "labels menosLabel";
@@ -196,7 +207,7 @@ function cargaPreguntas(){
     input4.classList = "form-check-input";
     input4.type = "radio";
     input4.name = "flexRadioDefault" + (i+1);
-    input4.id = "incorrecta" + (i+1) + "Pregunta" + (i+1); 
+    input4.id = "incorrecta" + (i+3) + "Pregunta" + (i+1); 
     input4.value = "#";
 
     label4.classList = "labels menosLabel";
@@ -214,6 +225,49 @@ function cargaPreguntas(){
     document.querySelector(".todasPreguntas").appendChild(div1);
 
   }
-    
+ }
 }
   
+function botonGuardaRespuestas(){
+  contestado = true;
+ 
+  var nota = 0;
+
+ var cantPreguntas = preguntas["preguntas"].length;
+ for(var i = 0; i < cantPreguntas; i++){
+
+  if(document.getElementById("correctaPregunta" + (i+1)).checked){
+    nota++;
+  }
+  
+ }
+ 
+ var notaFinal = (nota/cantPreguntas)*100;
+ var evaluacionNueva = {"nombreEvaluacion":evaluacion["nombre"], "nota":notaFinal};
+ evaluacionesPorEstudiante["evaluaciones"].push(evaluacionNueva);
+
+ var li = document.createElement("li");
+ var div1 = document.createElement("div");
+ var div2 = document.createElement("div");
+ var span = document.createElement("span");
+  
+ li.classList = "list-group-item d-flex justify-content-between align-items-start eval";
+ div1.classList = "ms-2 me-auto";
+ div2.classList = "fw-bold";
+ div2.textContent = evaluacionNueva["nombreEvaluacion"];
+ span.classList = "badge bg-primary rounded-pill";
+ span.textContent = notaFinal;
+  
+ div1.appendChild(div2);
+ li.appendChild(div1);
+ li.appendChild(span);
+ document.querySelector(".lista").appendChild(li);
+ 
+ document.getElementById("todasPreguntas").remove();
+ document.getElementById("botonGuarda").textContent = "Respuestas Guardadas";
+ document.getElementById("botonGuarda").disabled = true;
+
+
+
+
+}

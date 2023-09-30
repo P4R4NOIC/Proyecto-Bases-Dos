@@ -65,7 +65,10 @@ function guardarBoton(){
     }
    
     JSON.stringify(preguntas);
-
+    JSON.stringify(evaluacion);
+    guardarEvaluacion(evaluacion);
+    guardarPreguntas(preguntas);
+    
 
 
     
@@ -136,4 +139,24 @@ function generarPreguntas(value){
     }
     presionado = true;
     
+}
+
+function guardarEvaluacion(eval){
+    fetch('http://localhost:3000/GuardarDocumento/Correos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: eval
+    })
+}
+
+function guardarPreguntas(preg){
+    fetch('http://localhost:3000/GuardarDocumento/Correos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: preg
+    })
 }

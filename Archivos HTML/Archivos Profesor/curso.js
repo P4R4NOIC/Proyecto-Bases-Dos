@@ -36,23 +36,7 @@ function cargaTodo(){
     //llama a la base con el nombre del curso actual
     //pedirTodo();
     //---BORRAR
-    var prueba = { "idCurso":localStorage.getItem("codigoCursoActual"), 
-            "secciones":[{"seccion":"Referencias", "contenido":["iguana.txt", "lagarto.pdf", "lagartijo.pptx"], 
-                
-                "temas":[ {"tema":"Referencias++", "contenido":["sube.rar", "baja.cpp", "derecha.cpp", "izquierda.cpp", "cero.cpp"], 
-                            
-                            "subtemas":[{"subtema":"Referencias Reloaded", "contenido":["ya.c", "no.hs"]},
-                                        
-                                        {"subtema":"Notas Reloaded", "contenido":[]}]}, 
-                
-                          {"tema":"Notas++", "contenido":["algo", "algoMas"],
-                            
-                            "subtemas":[]}]}, 
-
-               {"seccion":"Notas", "contenido":["contenido", "enNotas"], "temas":[{"tema":"temaNotas"}]}, 
-
-
-               {"seccion":"Otro", "contenido":["otro","fin"], "temas":[]}]}
+    var prueba = { "idCurso":localStorage.getItem("codigoCursoActual"), "secciones":[]}
 
     localStorage.setItem("secciones", JSON.stringify(prueba));
     //---BORRAR
@@ -307,6 +291,7 @@ function botonSubirArchivoSeccion(){
     var documento = document.getElementById("archivoSeccion").value;
     entrada["secciones"][seccionSeleccionada]["contenido"].push(documento);
     var contenido = entrada["secciones"][seccionSeleccionada]["contenido"].length
+    guardarTodo(entrada)
     for(var i = 0; i < contenido; i++){
         creaListas(entrada["secciones"][seccionSeleccionada]["contenido"][i],i);
     }
@@ -317,6 +302,7 @@ function botonSubirArchivoTema(){
     var documento = document.getElementById("archivoTema").value;
     entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["contenido"].push(documento);
     var contenido = entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["contenido"].length;
+    guardarTodo(entrada)
     for(var i = 0; i < contenido; i++){
         creaListas(entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["contenido"][i], i);
     }
@@ -326,6 +312,7 @@ function botonSubirArchivoSubTema(){
     var documento = document.getElementById("archivoSubTema").value;
     documento.href = documento;
     entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].push(documento);
+    guardarTodo(entrada)
     var contenido = entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].length
     for(var i = 0; i < contenido; i++){
         creaListas(entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"][i],i);
@@ -351,10 +338,13 @@ function botonAgregarSeccion(){
 
     document.querySelector(".menu1").appendChild(ele);
 
-    
+    guardarTodo(entrada)
+
     creaListas(seccion, entrada["secciones"].length);
     
 }
+
+
 
 function botonAgregaTema(){
 
@@ -374,9 +364,15 @@ function botonAgregaTema(){
         actualizarTema(this.innerHTML,seccionSeleccionada)
      };
 
+    
     document.querySelector(".menu2").appendChild(ele);
 
     
+
+
+    guardarTodo(entrada)
+     
+
     creaListas(entrada["secciones"][seccionSeleccionada]["temas"][largo-1]["tema"], largo-1);
 
 
@@ -404,7 +400,8 @@ function botonAgregaSubTema(){
         };
             
     document.querySelector(".menu3").appendChild(ele);
-                
+        
+    guardarTodo(entrada)
     creaListas(entrada["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][largo-1]["subtema"], largo-1);
 
    
@@ -521,4 +518,16 @@ function activaDesactivaFinal(estado){
 
     document.getElementById("agregarArchivoSubTema").disabled = estado;
     document.getElementById("archivoSubTema").disabled = estado;
+}
+
+function guardarTodo(todo){
+    JSON.stringify(todo)
+    //cambiar link
+    fetch('http://localhost:3000/GuardarDocumento/Correos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: todo
+    })
 }
