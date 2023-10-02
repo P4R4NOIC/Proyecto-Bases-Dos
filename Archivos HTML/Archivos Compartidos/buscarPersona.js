@@ -1,90 +1,27 @@
-document.addEventListener("DOMContentLoaded", cargarPagina);
+
 function cargarPagina(tipo){
     
     autenticar()
-    //let usuarioJSON = localStorage.getItem("usuario");
-    //var usuario = JSON.parse(usuarioJSON);
-    //var nombre = usuario.nombre;
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombre = usuario.nombre;
     if(localStorage.getItem("conexion") == "PROFE"){
-        //document.getElementById("nombreProfesor").textContent = nombre;
-        document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+        document.getElementById("nombreProfesor").textContent = nombre;
     }
     if(localStorage.getItem("conexion") == "ESTUD"){
-        //document.getElementById("nombreEstudiante").textContent = nombre;
-        document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
+        document.getElementById("nombreEstudiante").textContent = nombre;
     }
     if(tipo=="todos"){
-        //pedirPersonas();
+        pedirPersonas();
     }
     if(tipo=="amigos"){
-        //pedirAmigos();
+        pedirAmigos();
     }
 
     
 }
 
 function cargarPersonas(){
-    
-    
-    //BORRAR
-    var profesJSON = [
-        {
-            "nombre": "Juan Pérez",
-            "edad": 30,
-            "ciudad": "Ciudad de México"
-        },
-        {
-            "nombre": "María González",
-            "edad": 28,
-            "ciudad": "Buenos Aires"
-        },
-        {
-            "nombre": "Carlos Rodríguez",
-            "edad": 35,
-            "ciudad": "Madrid"
-        },
-        {
-            "nombre": "Ana Smith",
-            "edad": 26,
-            "ciudad": "Nueva York"
-        },
-        {
-            "nombre": "Luisa López",
-            "edad": 32,
-            "ciudad": "Bogotá"
-        }
-    ]
-    var estudiantesJSON =  [
-        {
-            "nombre": "Laura Martínez",
-            "edad": 28,
-            "ciudad": "Barcelona"
-        },
-        {
-            "nombre": "Pedro García",
-            "edad": 33,
-            "ciudad": "Santiago"
-        },
-        {
-            "nombre": "Isabel Fernández",
-            "edad": 31,
-            "ciudad": "Lima"
-        },
-        {
-            "nombre": "Javier Pérez",
-            "edad": 29,
-            "ciudad": "Miami"
-        },
-        {
-            "nombre": "Ana Rodríguez",
-            "edad": 27,
-            "ciudad": "Los Ángeles"
-        }
-    ];
-    
-    localStorage.setItem("todosProfes", JSON.stringify(profesJSON))
-    localStorage.setItem("todosEstudiantes", JSON.stringify(estudiantesJSON))
-    //BORRAR
 
     let todosProfes = JSON.parse(localStorage.getItem("todosProfes"));
     let todosEstudiantes = JSON.parse(localStorage.getItem("todosEstudiantes"));
@@ -201,23 +138,72 @@ function cargarAmigos(){
 
     let todosAmigos = JSON.parse(localStorage.getItem("amigos"));
     for (i = 0; i < todosAmigos.length; i++) {
-        var persona = todosAmigos[i].nombre + " " + todosAmigos[i].segundonombre + " " + todosAmigos[i].primerapellido + " " + todosAmigos[i].segundoapellido ;
-        var ele = document.createElement("a")
-        ele.classList = "personas list-group-item list-group-item-dark"
-        ele.href = "#";
-        ele.role = "tab";
-        ele.innerHTML = persona;
-        ele.title = todosAmigos[i].username;
-        ele.onclick = function (){
-            if(localStorage.getItem("conexion") == "PROFE"){
-                guardaPersonaActual(this.title,"../Archivos Profesor/perfilUsuarioVistaProfe.html");
-            }
-            if(localStorage.getItem("conexion") == "ESTUD"){
-                guardaPersonaActual(this.title,"../Archivos Estudiante/perfilUsuarioVistaEstudiante.html");
-            }            
-        };
-        document.querySelector(".listas").appendChild(ele);
+        buscarPersonaActual(todosAmigos[i].username);
     }
+}
+
+function buscarPersonaActual(nombreDeUsuario){
+    let inputUsuario;
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/Usuario/'+nombreDeUsuario)
+    .then(response => {
+        if (!response.ok) {
+            console.log("No se pudo obtener la información del usuario");
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        inputUsuario = data;
+        if (inputUsuario.error != 'Usuario no encontrado'){
+            localStorage.setItem("amigoActual", JSON.stringify(inputUsuario));
+            almacenarPersonaEnLista();
+        }
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
+
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/Profesor/'+nombreDeUsuario)
+    .then(response => {
+        if (!response.ok) {
+            console.log("No se pudo obtener la información del usuario");
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        inputUsuario = data;
+        if (inputUsuario.error != 'Usuario no encontrado'){
+            localStorage.setItem("amigoActual", JSON.stringify(inputUsuario));
+            almacenarPersonaEnLista();
+        }
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
+}
+
+function almacenarPersonaEnLista(){
+    amigoActual = JSON.parse(localStorage.getItem("amigoActual"));
+    
+    var persona = amigoActual.nombre + " " + amigoActual.segundonombre + " " + amigoActual.primerapellido + " " + amigoActual.segundoapellido ;
+    var ele = document.createElement("a")
+    ele.classList = "personas list-group-item list-group-item-dark"
+    ele.href = "#";
+    ele.role = "tab";
+    ele.innerHTML = persona;
+    ele.title = amigoActual.username;
+    ele.onclick = function (){
+        if(localStorage.getItem("conexion") == "PROFE"){
+            guardaPersonaActual(this.title,"../Archivos Profesor/perfilUsuarioVistaProfe.html");
+        }
+        if(localStorage.getItem("conexion") == "ESTUD"){
+            guardaPersonaActual(this.title,"../Archivos Estudiante/perfilUsuarioVistaEstudiante.html");
+        }            
+    };
+    document.querySelector(".listas").appendChild(ele);
 }
 
 function buscarPersona(){
@@ -236,6 +222,6 @@ function buscarPersona(){
 }
 
 function guardaPersonaActual(personaActual,direccion){
-    localStorage.setItem("usernameAmigoActual", personaActual);
+    localStorage.setItem("usernamePersonaVisitada", personaActual);
     location.href = direccion;    
 }

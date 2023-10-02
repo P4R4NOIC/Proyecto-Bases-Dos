@@ -1,8 +1,6 @@
 var cantPreguntas;
 var evaluacionesPrevias = {"idCurso":localStorage.getItem("codigoCursoActual"),
-                            "evaluaciones":[{"evaluacion":"Prueba 1", "valor":"10%"}, 
-                            {"evaluacion":"Prueba 2", "valor":"20%"},
-                            {"evaluacion":"Prueba 3", "valor":"70%"}]}
+                            "evaluaciones":[]}
 
 var evaluacion = {"idCurso":"",
                   "id":"",
@@ -21,7 +19,7 @@ function cargarPagina(){
     //FUNCION DE AUTENTICACION DE USUARIO
     autenticar()
     document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
-    
+    pedirEvaluaciones();
     cargaEvaluacionesPrevias();
 
     //CARGA LA PAGINA CUANDO TODO ESTA LISTO
@@ -66,6 +64,7 @@ function guardarBoton(){
    
     JSON.stringify(preguntas);
     JSON.stringify(evaluacion);
+
     guardarEvaluacion(evaluacion);
     guardarPreguntas(preguntas);
     
@@ -76,9 +75,6 @@ function guardarBoton(){
 
 
 
-function creaEvaluacion(){
-
-}
 
 function cargaEvaluacionesPrevias(){
     
@@ -142,7 +138,7 @@ function generarPreguntas(value){
 }
 
 function guardarEvaluacion(eval){
-    fetch('http://localhost:3000/GuardarDocumento/Correos', {
+    fetch('http://localhost:3000/GuardarDocumento/:evaluacion', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -152,7 +148,7 @@ function guardarEvaluacion(eval){
 }
 
 function guardarPreguntas(preg){
-    fetch('http://localhost:3000/GuardarDocumento/Correos', {
+    fetch('http://localhost:3000/GuardarDocumento/:preguntas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -160,3 +156,26 @@ function guardarPreguntas(preg){
         body: preg
     })
 }
+
+function pedirEvaluaciones(){
+
+    let datosRecibidos;
+    // Hacer la solicitud GET al servidor
+    fetch('http://localhost:3000/consultarEvaluaciones/'+ localStorage.getItem("codigoCursoActual"))
+    .then(response => {
+        if (!response.ok) {
+            alert('No se pudo obtener la información del usuario');
+        }
+        return response.json(); // Parsea la respuesta JSON
+    })
+    .then(data => {
+        // Datos recibidos
+        datosRecibidos = data;
+        evaluacionesPrevias = JSON.stringify(datosRecibidos);
+       
+  
+    })
+    .catch(error => {
+        console.error('Error al obtener la información del usuario:', error);
+    });
+  }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosPerfil.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "perfilUsuarioVistaEstudiante.js"></script>
     
 </head>
 <body onload="cargarPagina()" class = "body">
@@ -48,19 +49,19 @@
 
             <div class="col">
                 <div class="row textos">
-                    <label for="" class = "textos">NOMBRE COMPLETO</label>
+                    <label id="labelNombre" class = "textos">NOMBRE COMPLETO</label>
                 </div>
                 <div class="row textos">
-                    <label for="" class = "textos">CORREO</label>
+                    <label id="labelCorreo" class = "textos">CORREO</label>
                 </div>
             </div>
 
             <div class="col">
                 <div class="row botones">
-                    <a class="boton botonProfe" type="button" role="button" href="#">Agregar amigo</a>
+                    <button class="btn boton botonProfe" id="btnAmigo" type="button" role="button" onclick="agregarAmigo()">Agregar amigo</button>
                 </div>
                 <div class="row botones">
-                    <a class="boton botonProfe" type="button" role="button" href="#">Ver cursos</a>
+                    <button class="btn boton botonProfe" id="btnCursos" type="button" role="button" onclick="imprimirDatos()">Ver cursos</button>
                 </div>
             </div>
 
@@ -79,28 +80,17 @@
                         <!-- CABECERA -->
                         <thead>
                             <tr>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo</th>
+                                <th scope="col">Nombre de curso</th>
+                                <th scope="col">Estado</th>
                             </tr>
                         </thead>
                         <!-- CUERPO -->
-                        <tbody>
-                            <tr>
-                                <td> Vindas Hernández </td>
-                                <td> Roberto Daniel </td>
-                                <td> rvindas2001@estudiantec.cr </td>
-                            </tr>
-                            <tr>
-                                <td> Vindas Hernández </td>
-                                <td> Roberto Daniel </td>
-                                <td> rvindas2001@estudiantec.cr </td>
-                            </tr>
-                            <tr>
-                                <td> Vindas Hernández </td>
-                                <td> Roberto Daniel </td>
-                                <td> rvindas2001@estudiantec.cr </td>
-                            </tr>
+                        <tbody class="cuerpoTablaLleva">
+                            <!-- <tr>
+                                <td> Curso 1 </td>
+                                <td> Activo </td>
+                            </tr> -->
+                            
                         </tbody>
                     </table>
                 </div>
@@ -122,28 +112,16 @@
                     <!-- CABECERA -->
                     <thead>
                         <tr>
-                            <th scope="col">Apellidos</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo</th>
+                            <th scope="col">Nombre de curso</th>
+                            <th scope="col">Estado</th>
                         </tr>
                     </thead>
                     <!-- CUERPO -->
-                    <tbody>
-                        <tr>
-                            <td> Vindas Hernández </td>
-                            <td> Roberto Daniel </td>
-                            <td> rvindas2001@estudiantec.cr </td>
-                        </tr>
-                        <tr>
-                            <td> Vindas Hernández </td>
-                            <td> Roberto Daniel </td>
-                            <td> rvindas2001@estudiantec.cr </td>
-                        </tr>
-                        <tr>
-                            <td> Vindas Hernández </td>
-                            <td> Roberto Daniel </td>
-                            <td> rvindas2001@estudiantec.cr </td>
-                        </tr>
+                    <tbody class="cuerpoTablaImparte">
+                        <!-- <tr>
+                            <td> Curso 1 </td>
+                            <td> Activo </td>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

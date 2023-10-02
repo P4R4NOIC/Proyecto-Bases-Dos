@@ -7,9 +7,9 @@ function cargarPagina(){
     let usuarioJSON = localStorage.getItem("usuario");
     var usuario = JSON.parse(usuarioJSON);
     var nombre = usuario.nombre;
-    document.getElementById("nombreProfesor").textContent = nombre;
+    document.getElementById("nombreEstudiante").textContent = nombre;
     cargarMensajes();
-      
+
 }
 
 function cargarMensajes(){

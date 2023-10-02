@@ -2,56 +2,16 @@ var contestado = new Boolean(false);
 var evaluacionesPorEstudiante = {"codigoUsuario":"", 
                                  "codigoCurso":"", 
                                  "nombreCurso":"", 
-                                 "evaluaciones":[{
-                                    "nombreEvaluacion":"Prueba 1", 
-                                    "nota":"100"},
-                                    {"nombreEvaluacion":"Prueba 2", 
-                                     "nota":"75"},
-                                    {"nombreEvaluacion":"Prueba 3", 
-                                     "nota":"50"}]}
+                                 "evaluaciones":[]}
 
 
 var evaluacion = {"idCurso":"",
-                  "id":"EV1",
-                  "nombre":"Eval1",
-                  "inicio":"2002-12-06", 
-                  "fin":"2023-09-23"}
+                  "id":"",
+                  "nombre":"",
+                  "inicio":"", 
+                  "fin":""}
                             
-var preguntas = {"idEvaluacion":"EV1", "preguntas":[{"id":"pregunta1", 
-                                                  "pregunta":"¿como se centra un div?", 
-                                                  "correcta":"No se", 
-                                                  "opcionB":"con maicena", 
-                                                  "opcionC":"con jamon", 
-                                                  "opcionD":"con magia"},
-
-                                                  {"id":"pregunta2", 
-                                                  "pregunta":"¿como se consigue una buena nota?", 
-                                                  "correcta":"con aire", 
-                                                  "opcionB":"con esfuerzo y saliva", 
-                                                  "opcionC":"con calcio", 
-                                                  "opcionD":"con lino"},
-
-                                                  {"id":"pregunta3", 
-                                                  "pregunta":"¿quien le ordeno al mundo girar?", 
-                                                  "correcta":"ignacio santos", 
-                                                  "opcionB":"geovanny vazquez", 
-                                                  "opcionC":"yo", 
-                                                  "opcionD":"me quedo sin ideas"},
-
-                                                  {"id":"pregunta4", 
-                                                  "pregunta":"¿cuanto mas tengo que escribir?", 
-                                                  "correcta":"me quedo sin nada", 
-                                                  "opcionB":"ya no mas", 
-                                                  "opcionC":"una mas", 
-                                                  "opcionD":"ya casi"},
-
-                                                  {"id":"pregunta5", 
-                                                  "pregunta":"¿final?", 
-                                                  "correcta":"si", 
-                                                  "opcionB":"ya", 
-                                                  "opcionC":"por fin", 
-                                                  "opcionD":"termino"}
-                                                ]}
+var preguntas = {"idEvaluacion":"", "preguntas":[]}
 
 
 function cargarPagina(){
@@ -59,17 +19,88 @@ function cargarPagina(){
     autenticar()
     document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
     
+    pedirEvaluacionesEstudiante();
     cargaEvaluacionesPrevias();
+
+    pedirEvaluacion();
+    pedirPreguntas();
+
     cargaPreguntas();
 
     //CARGA LA PAGINA CUANDO TODO ESTA LISTO
     document.addEventListener("DOMContentLoaded", cargarPagina);
 }
 
+function pedirEvaluacionesEstudiante(){
+  
+  let datosRecibidos;
+  // Hacer la solicitud GET al servidor
+  fetch('http://localhost:3000/consultarNotasEstudiante/'+localStorage.getItem("codigoCursoActual") + "/" + localStorage.getItem("usuario"))
+  .then(response => {
+      if (!response.ok) {
+          alert('No se pudo obtener la información del usuario');
+      }
+      return response.json(); // Parsea la respuesta JSON
+  })
+  .then(data => {
+      // Datos recibidos
+      datosRecibidos = data;
+      localStorage.setItem("evalEst", JSON.stringify(datosRecibidos))
 
+  })
+  .catch(error => {
+      console.error('Error al obtener la información del usuario:', error);
+  });
+}
+
+function pedirEvaluacion(){
+  
+  let datosRecibidos;
+  // Hacer la solicitud GET al servidor
+  fetch('http://localhost:3000/consultarEvaluaciones/'+localStorage.getItem("codigoCursoActual"))
+  .then(response => {
+      if (!response.ok) {
+          alert('No se pudo obtener la información del usuario');
+      }
+      return response.json(); // Parsea la respuesta JSON
+  })
+  .then(data => {
+      // Datos recibidos
+      datosRecibidos = data;
+      localStorage.setItem("evaluacionActual", JSON.stringify(datosRecibidos))
+
+  })
+  .catch(error => {
+      console.error('Error al obtener la información del usuario:', error);
+  });
+}
+
+function pedirPreguntas(){
+
+  let datosRecibidos;
+  // Hacer la solicitud GET al servidor
+  fetch('http://localhost:3000/consultarPreguntas/'+ evaluacion["id"])
+  .then(response => {
+      if (!response.ok) {
+          alert('No se pudo obtener la información del usuario');
+      }
+      return response.json(); // Parsea la respuesta JSON
+  })
+  .then(data => {
+      // Datos recibidos
+      datosRecibidos = data;
+      localStorage.setItem("preguntasLista", JSON.stringify(datosRecibidos))
+
+  })
+  .catch(error => {
+      console.error('Error al obtener la información del usuario:', error);
+  });
+}
 
 function cargaEvaluacionesPrevias(){
-    
+
+    evaluacionesPorEstudiante = JSON.parse(localStorage.getItem("evalEst"))
+
     for(var i = 0; i < evaluacionesPorEstudiante["evaluaciones"].length; i++){
       var li = document.createElement("li");
       var div1 = document.createElement("div");
@@ -93,6 +124,9 @@ function cargaEvaluacionesPrevias(){
 
 
 function cargaPreguntas(){
+
+  evaluacion = JSON.parse(localStorage.getItem("evaluacionActual"));
+  preguntas = JSON.parse(localStorage.getItem("preguntasLista"));
 
   document.getElementById("agregaNombreEval").placeholder = evaluacion["nombre"];
   document.getElementById("codigoEval").placeholder = evaluacion["id"];
@@ -267,7 +301,19 @@ function botonGuardaRespuestas(){
  document.getElementById("botonGuarda").textContent = "Respuestas Guardadas";
  document.getElementById("botonGuarda").disabled = true;
 
+ guardarNota(evaluacionesPorEstudiante)
 
 
+}
 
+function guardarNota(todo){
+ var notaEstudiante = JSON.stringify(todo)
+  //cambiar link
+  fetch('http://localhost:3000/GuardarDocumento/Notas' , {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: notaEstudiante
+  })
 }

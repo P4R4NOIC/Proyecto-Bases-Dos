@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(datosMensajeJSON);
         guardarMensaje(datosMensajeJSON);
         alert("Su mensaje ha sido enviado con exito.");
-        //location.href("lobbyProfesor.html");
+        location.href = "mensajesVistaProfe.html";
         
         
     })

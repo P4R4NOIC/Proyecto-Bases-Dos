@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../Archivos CSS/estilosGenerales.css">
     <!-- JS -->
     <script type = "text/javaScript" src = "../Archivos Compartidos/autentificacion.js"></script>
+    <script type = "text/javaScript" src = "cursoEstudiante.js"></script>
     
 </head>
 <body onload="cargarPagina()" class = "body">
@@ -42,7 +43,7 @@
     <div class = "Opciones cajas">
         <div class="row justify-content-center">
             <div class="col-2">
-                <label class="titulo">BASES DE DATOS II</label>
+                <label class="titulo" id = "titulo">BASES DE DATOS II</label>
             </div>
             <div class="col-3">
                 <a class="boton botonProfe" type="button" role="button" href="evaluacionesEstudiante.html">Evaluaciones</a>
@@ -57,19 +58,17 @@
     <div class = "Secciones cajas">
         <div class="row justify-content-center">
             <div class="col-3" style = "margin-right: -60px; margin-bottom: 10px;">
-                <a class="boton botonProfe" style = "margin-left: -15px;" type="button" role="button" href="#">Ver temas</a>
+                <a class="boton botonProfe" style = "margin-left: -15px;" type="button" role="button" href="#" onclick="botonCargarSecciones()">Ver Secciones</a>
             </div>
             <div class="col-3">
                 <!-- DROPDOWN -->
                 <div class = "col-5" style = "margin-left: -10px;">
                     <div class="dropdown" style = "margin-left: -100px; margin-right: -200px;">
-                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                         Seleccionar Seccion
                         </button>
-                        <ul class="dropdown-menu w-50 menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ul class="dropdown-menu w-50 menu menu1" aria-labelledby="dropdownMenuButton1">
+                       
                         </ul>
                     </div>
                 </div>
@@ -78,13 +77,11 @@
                 <!-- DROPDOWN -->
                 <div class = "col-5" style = "margin-left: -10px;">
                     <div class="dropdown" style = "margin-right: -200px; margin-left: -50px;">
-                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                         Seleccionar Tema
                         </button>
-                        <ul class="dropdown-menu w-50 menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ul class="dropdown-menu w-50 menu menu2" aria-labelledby="dropdownMenuButton2">
+                      
                         </ul>
                     </div>
                 </div>
@@ -93,13 +90,11 @@
                 <!-- DROPDOWN -->
                 <div class = "col-5" style = "margin-left: -10px;">
                     <div class="dropdown" style = "margin-right: -200px; margin-left: -70px;">
-                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn boton dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false" disabled>
                         Seleccionar Subtema
                         </button>
-                        <ul class="dropdown-menu w-50 menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ul class="dropdown-menu w-50 menu menu3" aria-labelledby="dropdownMenuButton3">
+                     
                         </ul>
                     </div>
                 </div>
@@ -111,20 +106,15 @@
     <table class="table table-dark table-striped cursos cajas">
         <thead>
             <tr>
-                <th scope="col">Seccion / Tema / Subtema</th>
+                <th scope="col" id = "tituloTabla">Seccion / Tema / Subtema</th>
         
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <th scope="row"> <a href="#" class = "cursosH cursos">Curso 1</a> </th>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 2</a></th>
-            </tr>
-            <tr>
-                <th scope="row"><a href="#" class = "cursosH cursos">Curso 3</a></th>
-            </tr>
+        <tbody id = "cuerpoTabla" class = "cuerpoTabla">
+      
+
+
+
         </tbody>
     </table>
     

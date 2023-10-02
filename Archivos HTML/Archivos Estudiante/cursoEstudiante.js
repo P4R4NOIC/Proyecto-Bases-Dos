@@ -6,16 +6,31 @@ var lista1Cargada = new Boolean(true);
 var lista2Cargada = new Boolean(true);
 var lista3Cargada = new Boolean(true);
 var lista4Cargada = new Boolean(true);
+//var entradaCarga[0] = {"idCurso":localStorage.getItem("codigoCursoActual"), "secciones":[]};
+// var entrada = {"idCurso":localStorage.getItem("codigoCursoActual"),"secciones":[{"seccion":"Referencias", "contenido":["inicio.lel"], 
 
-var entrada = {"idCurso":localStorage.getItem("codigoCursoActual"), "secciones":[]};
+//                 "temas":[ {"tema":"tema1", "contenido":["algo.jpg"], 
+
+//                             "subtemas":[{"subtema":"subtema1", "contenido":["contenido.rpg"]},
+
+//                                         {"subtema":"subtema2", "contenido":["contenido2.rar"]}]}, 
+
+//                           {"tema":"nombre", "contenido":[],
+
+//                             "subtemas":[]}]}, 
+
+//                {"seccion":"Notas", "contenido":[], "temas":[]}, 
+
+
+//                {"seccion":"Otro", "contenido":[], "temas":[]}] }
+
+var entrada = {"idCurso":localStorage.getItem("codigoCursoActual"), "secciones":[]}
 var entradaCarga = {"idCurso":localStorage.getItem("codigoCursoActual"), "secciones":[]};
-
-
 
 function cargarPagina(){
     //FUNCION DE AUTENTICACION DE USUARIO
     autenticar()
-    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
    
     
     
@@ -26,9 +41,10 @@ function cargarPagina(){
 
 function cargarFunciones(){
 
-    document.getElementById("tituloCurso").textContent = localStorage.getItem("cursoActual");
+    document.getElementById("titulo").textContent = localStorage.getItem("cursoActual");
     document.getElementById("tituloTabla").textContent = "Secciones";
     cargaTodo();
+  
     cargarSecciones();
 
 }
@@ -36,7 +52,9 @@ function cargarFunciones(){
 function cargaTodo(){
     //llama a la base con el nombre del curso actual
     pedirTodo();
-    entradaCarga = JSON.parse(localStorage.getItem("secciones"));
+    
+    //---BORRAR
+    entradaCarga = JSON.parse(localStorage.getItem("secciones"))
     
 }
 
@@ -62,38 +80,37 @@ function pedirTodo(){
         console.error('Error al obtener la información del usuario:', error);
     });
 }
-
 //CARGA SECCIONES AL INICIAR
 function cargarSecciones(){
     
     //borra la tabla con la cantidad de listas
     
-    
-    console.log(entradaCarga);
+   
     var table = document.getElementById("cuerpoTabla");
     var rowCount = table.rows.length;
 
-
+    
     for(var i = 0; i < rowCount; i++){
            document.getElementById("filas").remove();
     }
     
-    console.log(entradaCarga[0]["secciones"].length)
+   
 
  if(lista1Cargada == true){
-
+    
    for(var i = 0; i < entradaCarga[0]["secciones"].length; i++){
-
+    
     var seccion = entradaCarga[0]["secciones"][i]["seccion"];
+   
     var ele = document.createElement("a");
     ele.classList = "dropdown-item";
     ele.innerHTML = seccion;
     ele.id = "seccion" + (i+1);
-    
+   
     ele.onclick = function (){
         actualizarSeccion(this.innerHTML)
      };
-
+    
     document.querySelector(".menu1").appendChild(ele);
 
     
@@ -104,7 +121,7 @@ function cargarSecciones(){
    lista1Cargada = false;
 
  }
- else{
+  else{
     
     for(var i = 0; i<entradaCarga[0]["secciones"].length; i++){
         var seccion = entradaCarga[0]["secciones"][i]["seccion"];
@@ -112,7 +129,7 @@ function cargarSecciones(){
         lista2Cargada = false;
     }
     
- }
+  }
 
 }
 
@@ -122,7 +139,7 @@ function cargarTemas(tema){
     var table = document.getElementById("cuerpoTabla");
     var rowCount = table.rows.length;
 
-
+   
     for(var i = 0; i < rowCount; i++){
            document.getElementById("filas").remove();
     }
@@ -285,129 +302,11 @@ function creaListas(contenido, cantidad){
 
 }
 
-function botonSubirArchivoSeccion(){
-
-    var documento = document.getElementById("archivoSeccion").value;
-    entradaCarga[0]["secciones"][seccionSeleccionada]["contenido"].push(documento);
-    var contenido = entradaCarga[0]["secciones"][seccionSeleccionada]["contenido"].length
-    guardarTodo(entradaCarga[0])
-    for(var i = 0; i < contenido; i++){
-        creaListas(entradaCarga[0]["secciones"][seccionSeleccionada]["contenido"][i],i);
-    }
-
-}
-
-function botonSubirArchivoTema(){
-    var documento = document.getElementById("archivoTema").value;
-    entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["contenido"].push(documento);
-    var contenido = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["contenido"].length;
-    guardarTodo(entradaCarga[0])
-    for(var i = 0; i < contenido; i++){
-        creaListas(entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["contenido"][i], i);
-    }
-}
-
-function botonSubirArchivoSubTema(){
-    var documento = document.getElementById("archivoSubTema").value;
-    documento.href = documento;
-    entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].push(documento);
-    guardarTodo(entradaCarga[0])
-    var contenido = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"].length
-    for(var i = 0; i < contenido; i++){
-        creaListas(entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][subTemaSeleccionado]["contenido"][i],i);
-    }
-    
-}
-
-function botonAgregarSeccion(){
-    var seccion = document.getElementById("agregarTemaSeccion").value
-    var seccionNueva = {"seccion":seccion, "contenido":[], "temas":[]}
-    
-    entradaCarga[0]["secciones"].push(seccionNueva); 
-    
-   
-    var seccion = entradaCarga[0]["secciones"][entradaCarga[0]["secciones"].length-1]["seccion"];
-    
-    var ele = document.createElement("a");
-    ele.classList = "dropdown-item";
-    ele.innerHTML = seccion;
-    ele.id = "seccion" + (entradaCarga[0]["secciones"].length);
-    
-    ele.onclick = function (){
-        actualizarSeccion(this.innerHTML)
-     };
-
-    document.querySelector(".menu1").appendChild(ele);
-
-    guardarTodo(entradaCarga[0])
-
-    creaListas(seccion, entradaCarga[0]["secciones"].length);
-    
-}
 
 
 
-function botonAgregaTema(){
-
-    var tema = document.getElementById("agregarSubTema").value
-    var temaNuevo = {"tema":tema, "contenido":[], "subtemas":[]}
-
-    entradaCarga[0]["secciones"][seccionSeleccionada]["temas"].push(temaNuevo);
-    var largo = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"].length
-    var seccion = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][largo-1];
-
-    var ele = document.createElement("a");
-    ele.classList = "dropdown-item";
-    ele.innerHTML = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][largo-1]["tema"];
-    ele.id = "tema" + (largo);
-    
-    ele.onclick = function (){
-        actualizarTema(this.innerHTML,seccionSeleccionada)
-     };
-
-    
-    document.querySelector(".menu2").appendChild(ele);
-
-    
 
 
-    guardarTodo(entradaCarga[0])
-     
-
-    creaListas(entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][largo-1]["tema"], largo-1);
-
-
-   
-   
-   
-   
-}
-
-function botonAgregaSubTema(){
-    var subTema = document.getElementById("agregarSubTemaTitulo").value;
-    var subTemaNuevo = {"subtema":subTema, "contenido":[]}
-
-    entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"].push(subTemaNuevo);
-  
-    var largo = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"].length
-
-    var ele = document.createElement("a");
-    ele.classList = "dropdown-item";
-    ele.innerHTML = entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][largo-1]["subtema"];
-    ele.id = "subtema" + largo;
-                
-    ele.onclick = function (){
-            actualizarSubTema(this.innerHTML, temaSeleccionado, seccionSeleccionada)
-        };
-            
-    document.querySelector(".menu3").appendChild(ele);
-        
-    guardarTodo(entradaCarga[0])
-    creaListas(entradaCarga[0]["secciones"][seccionSeleccionada]["temas"][temaSeleccionado]["subtemas"][largo-1]["subtema"], largo-1);
-
-   
-            
-}
 
 //CLICK EN BOTON CARGAR SECCIONES
 function botonCargarSecciones(){
@@ -425,15 +324,14 @@ function botonCargarSecciones(){
 function actualizarSeccion(item){
 
     document.getElementById("dropdownMenuButton1").innerHTML = item;
+    console.log(document.getElementById("dropdownMenuButton1").innerHTML)
     //ACTUALIZA LISTA CON SECCION
     var i = 0;
     for(i; i < entradaCarga[0]["secciones"].length; i++){
         if(document.getElementById("seccion" +(i+1)).innerHTML == item){
-            console.log(document.getElementById("seccion" +(i+1)).innerHTML);
             break;
         }
     }
-    
     cargarTemas(i);
     //---------------------------
     activaDesactivaTemas(false);
@@ -480,58 +378,38 @@ function actualizarSubTema(item, tema, seccion){
 function activaDesactivaSecciones(estado){
     document.getElementById("dropdownMenuButton1").disabled = estado;
     document.getElementById("tituloTabla").textContent = "Secciones";
-
-    if(seccionesCargadas == false){
-        cargarSecciones();
-        seccionesCargadas = true;
-    }
+    // if(seccionesCargadas == false){
+    //     cargarSecciones();
+    //     seccionesCargadas = true;
+    // }
     
     document.getElementById("dropdownMenuButton1").innerHTML = "Seleccionar Sección";
-    document.getElementById("botonAgregarSeccion").disabled = estado;
-    document.getElementById("agregarTemaSeccion").disabled = estado;
-    document.getElementById("agregarTemaSeccion").value = '';
-
-    document.getElementById("archivoSeccion").value = '';
+   
 }
 
 function activaDesactivaTemas(estado){
-    document.getElementById("agregarArchivoSeccion").disabled = estado;
-    document.getElementById("archivoSeccion").disabled = estado;
-    document.getElementById("dropdownMenuButton2").disabled = estado;
-    document.getElementById("dropdownMenuButton2").innerHTML = "Seleccionar Tema";
-    document.getElementById("botonAgregarTema").disabled = estado;
-    document.getElementById("agregarSubTema").disabled = estado;
-    document.getElementById("agregarSubTema").value = '';
-   
-    document.getElementById("archivoTema").value = '';
+  document.getElementById("dropdownMenuButton2").disabled = estado;
 }
 
 function activaDesactivaSubTemas(estado){
-    document.getElementById("agregarArchivoTema").disabled = estado;
-    document.getElementById("archivoTema").disabled = estado;
+   
     document.getElementById("dropdownMenuButton3").disabled = estado;
     document.getElementById("dropdownMenuButton3").innerHTML = "Seleccionar Sub-Tema";
-    document.getElementById("archivoSubTema").value = '';
-    document.getElementById("botonAgregarSubTema").disabled = estado;
-    document.getElementById("agregarSubTemaTitulo").disabled = estado;
-    document.getElementById("agregarSubTemaTitulo").value = '';
+   
 }
 
 function activaDesactivaFinal(estado){
 
-    document.getElementById("agregarArchivoSubTema").disabled = estado;
-    document.getElementById("archivoSubTema").disabled = estado;
 }
 
 function guardarTodo(todo){
-    var entradaFinal =JSON.stringify(todo);
-    
+    JSON.stringify(todo)
     //cambiar link
-    fetch('http://localhost:3000/CrearModificarSeccion', {
+    fetch('http://localhost:3000/GuardarDocumento/Correos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: entradaFinal
+        body: todo
     })
 }

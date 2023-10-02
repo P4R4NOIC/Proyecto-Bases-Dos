@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
                     //GUARDA EN BASE DE DATOS
-                    //registrarEstudiante(datosUsuarioJSON);
+                    registrarEstudiante(datosUsuarioJSON);
                     alert("Sus datos han sido guardados")
                     history.back();
                 }else{
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
                     //GUARDA EN BASE DE DATOS
-                    //registrarProfesor(datosUsuarioJSON);
+                    registrarProfesor(datosUsuarioJSON);
                     alert("Sus datos han sido guardados")
                     history.back();
                 }else{
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
                     //ACTUALIZA EN BASE DE DATOS
-                    //actualizarProfesor(datosUsuarioJSON);
+                    actualizarProfesor(datosUsuarioJSON);
                     alert("Sus datos han sido actualizado")
                     history.back();
 
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
             (png.test(img) != null || jpg.test(img) != null || img == "")){
                 if(contrasena == contraConfirma){
                     //ACTUALIZA EN BASE DE DATOS
-                    //actualizarEstudiante(datosUsuarioJSON);
+                    actualizarEstudiante(datosUsuarioJSON);
                     alert("Sus datos han sido actualizado")
                     history.back();
                 }else{
@@ -166,9 +166,21 @@ function registrarProfesor(datosUsuarioJSON){
 }
 
 function actualizarProfesor(datosUsuarioJSON){
-    
+    fetch('http://localhost:3000/editarProfesores', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datosUsuarioJSON
+    })
 }
 
 function actualizarEstudiante(datosUsuarioJSON){
-
+    fetch('http://localhost:3000/editarEstudiante', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: datosUsuarioJSON
+    })
 }

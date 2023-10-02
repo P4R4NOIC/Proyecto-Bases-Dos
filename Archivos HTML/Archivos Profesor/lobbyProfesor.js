@@ -2,28 +2,17 @@
 function cargarPagina(){
     
     autenticar()
-    //let usuarioJSON = localStorage.getItem("usuario");
-    //var usuario = JSON.parse(usuarioJSON);
-    //var nombre = usuario.nombre;
-    //console.log(usuario);
-    //console.log(usuario.nombre);
-    //document.getElementById("nombreProfesor").textContent = nombre;
-    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombre = usuario.nombre;
+    document.getElementById("nombreProfesor").textContent = nombre;    
+    pedirCursos();
+
     
-    cargarCursosProfesor()
-
-
-    document.addEventListener("DOMContentLoaded", cargarPagina);
 }
 
 function cargarCursosProfesor(){
-    //pedirCursos()
-    //---BORRAR
-    var cursosEst = [{"curso":"Bases de datos","estado":"Disponible","codigo":"IC-500"},
-              {"curso":"Bases de datos 2", "estado":"Finalizado","codigo":"IC-785"}, 
-              {"curso":"Lenguajes de programacion", "estado":"En curso","codigo":"HI-200"}]
-    localStorage.setItem("cursos", JSON.stringify(cursosEst))
-    //---BORRAR
+    
     let cursos = JSON.parse(localStorage.getItem("cursos"));
     for(var i = 0; i < cursos.length; i++){
         
@@ -53,8 +42,8 @@ function pedirCursos(){
     .then(data => {
         // Datos recibidos
         datosRecibidos = data;
-        localStorage.setItem("cursos", JSON.stringify(datosRecibidos))
-
+        localStorage.setItem("cursos", JSON.stringify(datosRecibidos));
+        cargarCursosProfesor();
     })
     .catch(error => {
         console.error('Error al obtener la información del usuario:', error);
@@ -92,8 +81,8 @@ function guardaCursoActual(cursoActual){
    
     for(var i = 0; i < cursos.length; i++ ){
 
-        if(cursoActual == cursos[i]["curso"]){
-            localStorage.setItem("codigoCursoActual", cursos[i]["codigo"])
+        if(cursoActual == cursos[i]["nombre"]){
+            localStorage.setItem("codigoCursoActual", cursos[i]["codigo_curso"])
         }
     }
     

@@ -1,7 +1,12 @@
+
+
 function cargarPagina(){
     //FUNCION DE AUTENTICACION DE USUARIO
     autenticar()
-    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombre = usuario.nombre;
+    document.getElementById("nombreProfesor").textContent = nombre;
     
     
 }
@@ -35,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             let usuarioJSON = localStorage.getItem("usuario");
             var usuario = JSON.parse(usuarioJSON);
-            var nombre = usuario.nombre;
+            var nombre = usuario.username;
             let cursoParaProfe = {
                 codigo_profesor: nombre,
                 codigo_curso: codigoCurso,
@@ -48,12 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             let datosUsuarioJSON = JSON.stringify(datosUsuario);
             let cursoParaProfeJSON = JSON.stringify(cursoParaProfe);
-            //subirDatosCurso(datosUsuarioJSON);
-            //registrarCursoParaUnProfe(cursoParaProfeJSON);
+            subirDatosCurso(datosUsuarioJSON);
+            registrarCursoParaUnProfe(cursoParaProfeJSON);
             alert("Su curso ha sido creado con éxito.");
-            console.log(datosUsuarioJSON);
-            console.log(cursoParaProfeJSON);
-            //location.href("lobbyProfesor.html");
+            location.href = "lobbyProfesor.html";
         }
         
     })

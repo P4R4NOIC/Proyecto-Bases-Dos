@@ -2,11 +2,10 @@
 function cargarPagina(){
     
     autenticar()
-    //let usuarioJSON = localStorage.getItem("usuario");
-    //var usuario = JSON.parse(usuarioJSON);
-    //var nombre = usuario.nombre;
-    //document.getElementById("nombreEstudiante").textContent = nombre;
-    document.getElementById("nombreEstudiante").textContent = localStorage.getItem("usuario");
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombre = usuario.nombre;
+    document.getElementById("nombreEstudiante").textContent = nombre;
 
     pedirCursos()
     
@@ -53,7 +52,7 @@ function pedirCursos(){
         // Datos recibidos
         datosRecibidos = data;
         localStorage.setItem("cursos", JSON.stringify(datosRecibidos))
-        cargarCursosEstudiante()
+        cargarCursosEstudiante();
     })
     .catch(error => {
         console.error('Error al obtener la información del usuario:', error);

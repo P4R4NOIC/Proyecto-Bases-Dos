@@ -2,7 +2,10 @@
 function cargarPagina(){
     //FUNCION DE AUTENTICACION DE USUARIO
     autenticar()
-    document.getElementById("nombreProfesor").textContent = localStorage.getItem("usuario");
+    let usuarioJSON = localStorage.getItem("usuario");
+    var usuario = JSON.parse(usuarioJSON);
+    var nombre = usuario.nombre;
+    document.getElementById("nombreProfesor").textContent = nombre;    
     
     cargarSeleccionCurso();
     //CARGA LA PAGINA CUANDO TODO ESTA LISTO
@@ -16,7 +19,6 @@ function cargarSeleccionCurso(){
         let opcion = document.createElement("option");
         opcion.text = cursos[i].nombre;
         opcion.value = cursos[i].codigo_curso;
-        console.log(opcion)
         nuevoSelect.appendChild(opcion);
     }
     
@@ -40,36 +42,36 @@ document.addEventListener("DOMContentLoaded", function () {
         if (document.getElementById("select").selectedIndex == 0 || document.getElementById("estadoCurso").selectedIndex == 0) {
             alert('Por favor rellene los selectores faltantes');
         }else{
+            // FALTA CODIGO PARA COPIAR codigoParaCopiar: codigoParaCopiar,
             let datosUsuario = {
-                codigoParaCopiar: codigoParaCopiar,
-                codigoCurso: codigoCurso,
-                cursoInicio: cursoInicio,
-                cursoFin: cursoFin,
-                desCurso: desCurso,
-                estadoCurso: estadoCurso,
+                codigo: codigoCurso,
+                fechainit: cursoInicio,
+                fechafinal: cursoFin,
+                descripcion: desCurso,
+                estado: estadoCurso,
                 foto: foto,
-                nombreCurso: nombreCurso
+                nombre: nombreCurso
             };
-            nombreUsuario = JSON.stringify(localStorage.getItem("usuario")).username
+            let usuarioJSON = localStorage.getItem("usuario");
+            var usuario = JSON.parse(usuarioJSON);
+            var nombreUsuario = usuario.username;
+            // FALTA CODIGO PARA COPIAR codigoParaCopiar: codigoParaCopiar,
             let cursoParaProfe = {
-                username: nombreUsuario,
-                codigoParaCopiar: codigoParaCopiar,
-                codigoCurso: codigoCurso,
-                cursoInicio: cursoInicio,
-                cursoFin: cursoFin,
-                desCurso: desCurso,
-                estadoCurso: estadoCurso,
+                codigo_profesor: nombreUsuario,
+                codigo_curso: codigoCurso,
+                descripcion: desCurso,
+                estado: estadoCurso,
+                fechafinal: cursoFin,
+                fechainit: cursoInicio,
                 foto: foto,
-                nombreCurso: nombreCurso
+                nombre: nombreCurso
             };
             let datosUsuarioJSON = JSON.stringify(datosUsuario);
             let cursoParaProfeJSON = JSON.stringify(cursoParaProfe);
-            //subirDatosCurso(datosUsuarioJSON);
-            //registrarCursoParaUnProfe(cursoParaProfeJSON);
+            subirDatosCurso(datosUsuarioJSON);
+            registrarCursoParaUnProfe(cursoParaProfeJSON);
             alert("Su curso ha sido copiado con éxito.");
-            console.log(datosUsuarioJSON);
-            console.log(cursoParaProfeJSON);
-            //location.href("lobbyProfesor.html");
+            location.href = "lobbyProfesor.html";
         }
     })
 });
